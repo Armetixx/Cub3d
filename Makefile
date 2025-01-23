@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+         #
+#    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 15:21:04 by Rigby             #+#    #+#              #
-#    Updated: 2025/01/22 15:19:04 by kederhet         ###   ########.fr        #
+#    Updated: 2025/01/23 11:54:28 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,10 @@ ECHO = echo
 LIBFTNAME = libft/libft.a
 LIBFTPATH = libft/
 GNL = get_next_line
+MLX = libmlx.a -framework OpenGL -framework AppKit
 
 SOURCE =	main str_utils/str_utils errors/error map_checks/read_file $(GNL)/$(GNL) \
-			$(GNL)/$(GNL)_utils
+			$(GNL)/$(GNL)_utils init events
 
 SRCS = $(addsuffix .c, $(SOURCE))
 OBJS = $(addsuffix .o, $(SOURCE))
@@ -52,7 +53,7 @@ endef
 all : $(NAME)
 
 $(NAME) : $(LIBFTNAME) $(OBJS)
-	@$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $(SRCS) $(LIBFTNAME)
+	@$(CC) $(CFLAGS) $(MLX) $(INCLUDE) -o $(NAME) $(SRCS) $(LIBFTNAME)
 	@$(ECHO) "                                                                                                 \n \
                                       bbbbbbbb                                           dddddddd\n \
         CCCCCCCCCCCCC                 b::::::b             333333333333333               d::::::d\n \

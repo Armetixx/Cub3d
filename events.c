@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 12:18:04 by kederhet          #+#    #+#             */
-/*   Updated: 2025/01/23 12:39:46 by guillaumeco      ###   ########.fr       */
+/*   Created: 2025/01/22 15:31:20 by guillaumeco       #+#    #+#             */
+/*   Updated: 2025/01/22 15:37:01 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors/errors.h"
-#include "map_checks/map.h"
 #include "includes/cub3d.h"
 
-#include <stdio.h>
-
-int	main(int argc, char **argv)
+int close_handler(t_cub3d *cub3d)
 {
-	int 	fd;
-	t_cub3d	cub3d;
-
-	if (!ft_check_arg(argc, argv))
-		return (1);
-	fd = ft_open_file(argv[1]);
-	if (!fd)
-		return (1);
-	if (!ft_check_cardinal(fd))
-		return (1);
-	cub3d.name = "cub3d";
-	cub3d_init(&cub3d);
-	mlx_loop(cub3d.mlx_connection);
+	mlx_destroy_window(cub3d->mlx_connection, cub3d->mlx_window);
+	free(cub3d->mlx_connection);
+	exit(EXIT_SUCCESS);
+}
+int	key_handler(int keysym, t_cub3d *cub3d)
+{
+	//printf("%d\n", keysym);
+	if (keysym == XK_Escape)
+		close_handler(cub3d);
 	return (0);
 }
