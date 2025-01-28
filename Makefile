@@ -6,7 +6,7 @@
 #    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 15:21:04 by Rigby             #+#    #+#              #
-#    Updated: 2025/01/23 11:54:28 by guillaumeco      ###   ########.fr        #
+#    Updated: 2025/01/28 12:55:14 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ ECHO = echo
 LIBFTNAME = libft/libft.a
 LIBFTPATH = libft/
 GNL = get_next_line
+
+MLX = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o
 MLX = libmlx.a -framework OpenGL -framework AppKit
 
 SOURCE =	main str_utils/str_utils errors/error map_checks/read_file $(GNL)/$(GNL) \

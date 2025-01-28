@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:18:33 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/01/22 15:35:37 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/01/28 12:34:02 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,24 @@ static void	malloc_error(void)
 	exit(EXIT_FAILURE);
 }
 
-static void	events_init(t_cub3d *cub3d)
+static void	events_init(t_data *data)
 {
-	mlx_hook(cub3d->mlx_window, KeyPress, KeyPressMask, key_handler, cub3d);
-	mlx_hook(cub3d->mlx_window, DestroyNotify, StructureNotifyMask, close_handler, cub3d);
+	mlx_hook(data->mlx_window, KeyPress, KeyPressMask, key_handler, data);
+	mlx_hook(data->mlx_window, DestroyNotify, StructureNotifyMask, close_handler, data);
 }
 
-void	cub3d_init(t_cub3d *cub3d)
+void	cub3d_init(t_data*data)
 {
-	cub3d->mlx_connection = mlx_init();
-	if (cub3d->mlx_connection == NULL)
+	data->mlx_connection = mlx_init();
+	if (data->mlx_connection == NULL)
 		malloc_error();
-	cub3d->mlx_window = mlx_new_window(cub3d->mlx_connection, WIDTH, HEIGHT, cub3d->name);
-	if (cub3d->mlx_window == NULL)
+	data->mlx_window = mlx_new_window(data->mlx_connection, WIDTH, HEIGHT, data->name);
+	if (data->mlx_window == NULL)
 	{
-		mlx_destroy_window(cub3d->mlx_window, cub3d->mlx_connection);
-		free(cub3d->mlx_connection);
+		mlx_destroy_window(data->mlx_window, data->mlx_connection);
+		free(data->mlx_connection);
 		malloc_error();
 	}
-	events_init(cub3d);
+	events_init(data);
 	//data_init(cub3d);
 }
