@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = cub3d
-INCLUDE = #-I cub3d.h
+INCLUDE = -I ./mlx_linux/
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g3
 RM = rm -f
@@ -20,8 +20,11 @@ LIBFTNAME = libft/libft.a
 LIBFTPATH = libft/
 GNL = get_next_line
 
-MLX = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o
-MLX = libmlx.a -framework OpenGL -framework AppKit
+#MLX = libmlx.a -framework OpenGL -framework AppKit
+
+MLX_PATH = mlx_linux/
+MLX_NAME = libmlx_linux.a
+MLX = $(MLX_PATH)$(MLX_NAME)
 
 SOURCE =	main str_utils/str_utils errors/error map_checks/read_file $(GNL)/$(GNL) \
 			$(GNL)/$(GNL)_utils init events
@@ -52,10 +55,10 @@ define progress_bar
 	@if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then echo "\n"; fi
 endef
 
-all : $(NAME)
+all : $(NAME) $(MLX)
 
 $(NAME) : $(LIBFTNAME) $(OBJS)
-	@$(CC) $(CFLAGS) $(MLX) $(INCLUDE) -o $(NAME) $(SRCS) $(LIBFTNAME)
+	@$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFTNAME) $(INCLUDE) $(MLX) -lXext -lX11 -lm
 	@$(ECHO) "                                                                                                 \n \
                                       bbbbbbbb                                           dddddddd\n \
         CCCCCCCCCCCCC                 b::::::b             333333333333333               d::::::d\n \
@@ -80,12 +83,16 @@ $(LIBFTNAME):
 	@make -C $(LIBFTPATH)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
+	@$(CC) $(CFLAGS) -c $< -o $@
 	$(call progress_bar)
+
+$(MLX):
+	make -sC $(MLX_PATH)
 
 clean :
 	@$(RM) -r $(OBJS)
 	@make clean -C $(LIBFTPATH)
+	@make clean -C $(MLX_PATH)
 	@$(ECHO) "[$(NAME)] obj files cleaned."
 
 

@@ -14,7 +14,9 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../mlx/mlx.h"
+//# include "../mlx_mac/mlx.h"
+# include "../mlx_linux/mlx.h"
+
 //# include "libft/libft.h"
 # include <stdio.h> // A retirer
 # include <math.h>
