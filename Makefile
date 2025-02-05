@@ -6,7 +6,7 @@
 #    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 15:21:04 by Rigby             #+#    #+#              #
-#    Updated: 2025/01/28 12:55:14 by guillaumeco      ###   ########.fr        #
+#    Updated: 2025/02/05 12:54:58 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MLX_NAME = libmlx_linux.a
 MLX = $(MLX_PATH)$(MLX_NAME)
 
 SOURCE =	main str_utils/str_utils errors/error map_checks/read_file $(GNL)/$(GNL) \
-			$(GNL)/$(GNL)_utils init events
+			$(GNL)/$(GNL)_utils init events map player
 
 SRCS = $(addsuffix .c, $(SOURCE))
 OBJS = $(addsuffix .o, $(SOURCE))
@@ -58,7 +58,8 @@ endef
 all : $(NAME) $(MLX)
 
 $(NAME) : $(LIBFTNAME) $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFTNAME) $(INCLUDE) $(MLX) -lXext -lX11 -lm
+	@$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFTNAME) $(INCLUDE) $(MLX)
+	-lXext -lX11 -lm
 	@$(ECHO) "                                                                                                 \n \
                                       bbbbbbbb                                           dddddddd\n \
         CCCCCCCCCCCCC                 b::::::b             333333333333333               d::::::d\n \
