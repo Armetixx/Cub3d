@@ -6,11 +6,11 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:18:33 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/04 18:45:36 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/08 02:28:55 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 static void	malloc_error(void)
 {
@@ -37,6 +37,6 @@ void	cub3d_init(t_data*data)
 		free(data->mlx_connection);
 		malloc_error();
 	}
-	map_init(data);
-	draw_player(data);
+    data->img = mlx_new_image(data->mlx_connection, WIDTH, HEIGHT);
+    data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
 }
