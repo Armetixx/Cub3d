@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:06:49 by kederhet          #+#    #+#             */
-/*   Updated: 2025/01/22 15:47:04 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:43:43 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_open_file(char *filename)
 	return (fd);
 }
 
-static	char	*ft_check_empty(int fd)
+char	*ft_check_empty(int fd)
 {
 	char	*line;
 	int		i;
@@ -43,40 +43,54 @@ static	char	*ft_check_empty(int fd)
 	return (line);
 }
 
-static	int	ft_check_card_name(char *line, char *card)
-{
-	int	i;
-
-	i = 0;
-	while (ft_isspace(line[i]))
-		i++;
-	if (ft_strncmp(line + i, card, 2))
-		return (0);
-	i += 2;
-	if (!ft_isspace(line[i]))
-		return (0);
-	return (1);
-}
-
-int	ft_check_cardinal(int fd)
+char	**ft_create_misc_tab(int fd)
 {
 	char	*line;
-	
+	char	**tab;
+	int		i;
+	int		j;
+
+	j = 0;
+	tab = malloc(sizeof(char *) * (6 + 1));
 	line = ft_check_empty(fd);
-	if (!ft_check_card_name(line, "NO"))
-		return (ft_error("First cardinal point name is incorrect.", 0));
-	free(line);
-	line = ft_check_empty(fd);
-	if (!ft_check_card_name(line, "SO"))
-		return (ft_error("Second cardinal point name is incorrect.", 0));
-	free(line);
-	line = ft_check_empty(fd);
-	if (!ft_check_card_name(line, "WE"))
-		return (ft_error("Third cardinal point name is incorrect.", 0));
-	free(line);
-	line = ft_check_empty(fd);
-	if (!ft_check_card_name(line, "EA"))
-		return (ft_error("Fourth cardinal point name is incorrect.", 0));
-	free(line);
-	return (1);
+	while (line && j < 6)
+	{
+		i = 0;
+		while (ft_isspace(line[i]))
+			i++;
+		tab[j] = ft_strdup(line + i);
+		free(line);
+		j++;
+		if (j < 6)
+			line = ft_check_empty(fd);
+	}
+	tab[j] = NULL;
+	return (tab);
+}
+
+char	**ft_sort_misc_tab(char **tab)
+{
+	int		i;
+	char	**misc_tab;
+
+	i = 0;
+	misc_tab = ft_calloc(sizeof(char *), (6 + 1));
+	while (tab[i])
+	{
+		if (!misc_tab[0] && !ft_strncmp(tab[i], "NO", 2))
+			misc_tab[0] = ft_strdup(tab[i]);
+		if (!misc_tab[1] && !ft_strncmp(tab[i], "SO", 2))
+			misc_tab[1] = ft_strdup(tab[i]);
+		if (!misc_tab[2] && !ft_strncmp(tab[i], "WE", 2))
+			misc_tab[2] = ft_strdup(tab[i]);
+		if (!misc_tab[3] && !ft_strncmp(tab[i], "EA", 2))
+			misc_tab[3] = ft_strdup(tab[i]);
+		if (!misc_tab[4] && !ft_strncmp(tab[i], "F", 1))
+			misc_tab[4] = ft_strdup(tab[i]);
+		if (!misc_tab[5] && !ft_strncmp(tab[i], "C", 1))
+			misc_tab[5] = ft_strdup(tab[i]);
+		i++;
+	}
+	misc_tab[6] = NULL;
+	return (misc_tab);
 }

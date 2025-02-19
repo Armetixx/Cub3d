@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/19 13:34:14 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/19 13:42:14 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_data
 	float	player_size;
 	float	player_angle;
 	
-	t_texture	textures[4];
+	int		*pmap;
 }	t_data;
 
 //---------- Events ----------//

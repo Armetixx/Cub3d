@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_utils.c                                        :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 12:21:11 by kederhet          #+#    #+#             */
-/*   Updated: 2025/01/22 13:29:41 by kederhet         ###   ########.fr       */
+/*   Created: 2025/02/19 11:10:26 by kederhet          #+#    #+#             */
+/*   Updated: 2025/02/19 11:14:35 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "str_utils.h"
+#include "utils.h"
 
-void	ft_putchar(char c)
+int	*ft_get_playerpos(char	**map)
 {
-	write(1, &c, 1);
-}
+	int	i;
+	int	j;
+	int	*playerpos;
 
-void	ft_putstr(char *str)
-{
-	while (*str)
-		ft_putchar(*str++);
-}
-
-int	ft_isspace(char c)
-{
-	if (c == 9 || c == 11 || c == 12 || c == 13 || c == 32)
-		return (1);
-	return (0);
+	playerpos = malloc(2 * sizeof(int));
+	if (!playerpos)
+		return (0);
+	j = 0;
+	while (map[j])
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (map[j][i] == 'N' || map[j][i] == 'S' || map[j][i] == 'E' || map[j][i] == 'O')
+			{
+				playerpos[0] = j;
+				playerpos[1] = i;
+			}
+			i++;
+		}
+		j++;
+	}
+	return (playerpos);
 }
