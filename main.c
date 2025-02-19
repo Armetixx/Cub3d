@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:18:04 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 10:49:21 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/19 13:24:59 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,15 @@ int	main(int argc, char **argv)
 {
 	int 	fd;
 	t_data	*data;
-	char	**misc_tab;
-	char	**tmp_tab;
-	char	**map;
 	if (!ft_check_arg(argc, argv))
 		return (1);
 	fd = ft_open_file(argv[1]);
 	if (!fd)
 		return (1);
-	tmp_tab = ft_create_misc_tab(fd);
-	misc_tab = ft_sort_misc_tab(tmp_tab);
-	ft_free_tab(tmp_tab);
-	if (!ft_check_misc_tab(misc_tab))
-		return (1);
-	map = ft_get_map(fd);
-	if (!ft_check_map(map))
-		return (1);
-	map = ft_space_in_map(map);
-	tab_print(map);
 	data = malloc(sizeof(t_data));
 	data->name = "cub3d";
+	data->tmp_map = ft_make_map(fd);
+	if (ft_get_playerpos(data->tmp_map, &data->player_x, &data->player_y))
 	start_game(data);
 	mlx_loop(data->mlx_connection);
 	return (0);
