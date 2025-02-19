@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:49:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/08 02:28:34 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/19 13:36:39 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,14 @@ void	map_init(t_data	*data)
 	
 	i = 0;
 	data->map_bool = OFF;
+	data->player_angle = 0;
 	int	map[10][10] = {
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 		{1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
 		{1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
 		{1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 2, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 'S', 0, 1},
 		{1, 0, 0, 0, 1, 0, 0, 0, 0, 1},
 		{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -89,10 +90,18 @@ void	map_init(t_data	*data)
 		y = 0;
 		while (y < data->map_x)
 		{
-			if (map[i][y] == 2)
+			if (map[i][y] == 'N' || map[i][y] == 'S' || map[i][y] == 'O' || map[i][y] == 'E')
 			{
 				data->player_x = y * data->tile_size + (data->tile_size / 2) - (data->player_size);
 				data->player_y = i * data->tile_size + (data->tile_size / 2) - (data->player_size);
+				if (map[i][y] == 'N')
+					data->player_angle = PI;
+				else if (map[i][y] == 'S')
+					data->player_angle = 0;
+				else if (map[i][y] == 'E')
+					data->player_angle = PI / 2;
+				else if (map[i][y] == 'O')
+					data->player_angle = 3*PI / 2;
 			}
 			data->map[i][y] = map[i][y];
 			y++;

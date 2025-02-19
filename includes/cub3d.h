@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/08 02:33:03 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/19 13:34:14 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define RAY_STEP 0.1 //distance de detection des rays
 # define COLLISION 0.1 // marge d'erreur pour les collision 
 # define MAX_DIST 1000 //view distance
-
+# define PI 3.141592653589793238462
 
 //---------- KEYS ----------//
 
@@ -63,6 +63,15 @@
 # define RED_COLOR		0xFF0000
 
 //---------- STRUCTURE ----------//
+
+typedef struct s_texture
+{
+	void	*img;
+	char	*adrr;
+	int		bits_per_pixel;
+	int		line_lenght;
+	int		endian;
+}	t_texture;
 
 typedef struct s_data
 {
@@ -88,6 +97,8 @@ typedef struct s_data
 	float	center_y;
 	float	player_size;
 	float	player_angle;
+	
+	t_texture	textures[4];
 }	t_data;
 
 //---------- Events ----------//

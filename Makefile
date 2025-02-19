@@ -6,14 +6,14 @@
 #    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 15:21:04 by Rigby             #+#    #+#              #
-#    Updated: 2025/02/07 03:09:11 by guillaumeco      ###   ########.fr        #
+#    Updated: 2025/02/11 01:46:47 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 INCLUDE = -I ./mlx_linux/
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = #-Wall -Werror -Wextra -g3
 RM = rm -f
 ECHO = echo
 LIBFTNAME = libft/libft.a

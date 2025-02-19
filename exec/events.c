@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:31:20 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/07 05:19:58 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/11 02:25:49 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	key_handler(int keysym, t_data *data)
 		data->player_x = next_x;
 	if (!is_wall(data, data->player_x, next_y, 0))
 		data->player_y = next_y;
-
 	return (0);
 }
 
