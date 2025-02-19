@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:37:38 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 11:11:26 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/19 14:47:14 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,11 @@ char **ft_space_in_map(char **map)
 	new_map = malloc(sizeof(char *) * (tab_size(map) + 1));
 	while (map[i])
 	{
+		printf("map[i]: %s\n", map[i]);
 		new_map[i] = ft_replace_space_line(map[i], ' ', '3', map);
 		i++;
 	}
+	new_map[i] = NULL;
 	free(map);
 	return (new_map);
 }

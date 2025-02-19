@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/19 13:45:49 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/19 14:25:41 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int		is_wall(t_data *data, float x, float y, int is_for_ray);
 void	draw_player(t_data *data);
 void	cast_fov(t_data *data);
 void 	draw_cursor(t_data *data, int size, int color);
+int		ft_get_playerpos(t_data *data);
 
 //---------- DRAWING ----------//
 

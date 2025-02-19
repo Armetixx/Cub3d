@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:43:05 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 13:26:46 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/19 14:25:30 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdio.h> // RETIRER A SUPP
 # include "../libft/libft.h"
+# include "../includes/cub3d.h"
 
 void	ft_putstr(char *str);
 void	ft_putchar(char c);
@@ -30,7 +31,5 @@ char 	**ft_space_in_map(char **map);
 int		ft_longest_str_in_tab(char **tab);
 
 char 	**ft_make_map(int fd);
-
-int		ft_get_playerpos(char **map, float *player_x, float *player_y);
 
 #endif

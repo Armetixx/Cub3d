@@ -6,14 +6,26 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:10:26 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 13:36:49 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/19 14:13:23 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "../includes/cub3d.h"
 
-int	ft_get_playerpos(char **map, float *player_x, float *player_y)
+void	ft_set_player_angle(t_data *data, char cardinal)
+{
+	if (cardinal == 'N')
+		data->player_angle = PI;
+	if (cardinal == 'S')
+		data->player_angle = 0;
+	if (cardinal == 'E')
+		data->player_angle = PI / 2;
+	if (cardinal == 'O')
+		data->player_angle = 3 * PI / 2;
+}
+
+int	ft_get_playerpos(t_data *data)
 {
 	int	i;
 	int	j;
@@ -21,15 +33,16 @@ int	ft_get_playerpos(char **map, float *player_x, float *player_y)
 
 	j = 0;
 	count = 0;
-	while (map[j])
+	while (data->tmp_map[j])
 	{
 		i = 0;
-		while (map[j][i])
+		while (data->tmp_map[j][i])
 		{
-			if (map[j][i] == 'N' || map[j][i] == 'S' || map[j][i] == 'E' || map[j][i] == 'O')
+			if (data->tmp_map[j][i] == 'N' || data->tmp_map[j][i] == 'S' || data->tmp_map[j][i] == 'E' || data->tmp_map[j][i] == 'O') //player_angle = N: pi, S: 0, E: pi/2, O: 3*pi/2
 			{
-				*player_x = j;
-				*player_y = i;
+				data->player_x = j;
+				data->player_y = i;
+				ft_set_player_angle(data, data->tmp_map[i][j]);
 				count++;
 			}
 			i++;
@@ -66,17 +79,20 @@ char **ft_make_map(int fd)
 	return (map);
 }
 
-int **ft_map_to_int(char ***map)
-{
-	int	**new_map;
-	int	i;
-	int	j;
+// int **ft_map_to_int(char ***map)
+// {
+// 	int	**new_map;
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	new_map = ft_calloc(sizeof(int *), tab_size(*map));
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-	}
-}
+// 	i = 0;
+// 	new_map = ft_calloc(sizeof(int *), tab_size(*map));
+// 	while (map[i])
+// 	{
+// 		j = 0;
+// 		while (map[i][j])
+// 		{
+// 			new_map = map[i][j] - 48;
+// 		}
+// 	}
+// }

@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
+#    By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 15:21:04 by Rigby             #+#    #+#              #
-#    Updated: 2025/02/19 13:42:26 by guillaumeco      ###   ########.fr        #
+#    Updated: 2025/02/19 14:28:11 by kederhet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 INCLUDE = -I ./mlx_linux/
 CC = gcc
-CFLAGS = #-Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 RM = rm -f
 ECHO = echo
 LIBFTNAME = libft/libft.a
