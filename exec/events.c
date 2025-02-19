@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:31:20 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/19 11:15:49 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/19 13:41:49 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	key_handler(int keysym, t_data *data)
 		data->player_x = next_x;
 	if (!is_wall(data, data->player_x, next_y, 0))
 		data->player_y = next_y;
-
 	return (0);
 }
 

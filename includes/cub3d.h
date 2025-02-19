@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/19 11:16:45 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/19 13:45:49 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define RAY_STEP 0.1 //distance de detection des rays
 # define COLLISION 0.1 // marge d'erreur pour les collision 
 # define MAX_DIST 1000 //view distance
-
+# define PI 3.141592653589793238462
 
 //---------- KEYS ----------//
 
@@ -64,6 +64,15 @@
 
 //---------- STRUCTURE ----------//
 
+typedef struct s_texture
+{
+	void	*img;
+	char	*adrr;
+	int		bits_per_pixel;
+	int		line_lenght;
+	int		endian;
+}	t_texture;
+
 typedef struct s_data
 {
 	char	*name;
@@ -76,6 +85,7 @@ typedef struct s_data
 	int		endian;
 
 	int		map[10][10];
+	char	**tmp_map;
 	int		map_x;
 	int		map_y;
 	int		tile_size;	

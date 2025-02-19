@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:53:23 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/14 17:01:45 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/19 13:42:00 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

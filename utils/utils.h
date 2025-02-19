@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_utils.h                                        :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:43:05 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 11:00:34 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/19 13:26:46 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,9 @@ int		tab_print(char **tab);
 int		tab_size(char **tab);
 char 	**ft_space_in_map(char **map);
 int		ft_longest_str_in_tab(char **tab);
+
+char 	**ft_make_map(int fd);
+
+int		ft_get_playerpos(char **map, float *player_x, float *player_y);
 
 #endif
