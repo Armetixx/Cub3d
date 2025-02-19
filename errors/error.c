@@ -6,11 +6,11 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:19:44 by kederhet          #+#    #+#             */
-/*   Updated: 2025/01/22 11:59:54 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:11:19 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../str_utils/str_utils.h"
+#include "../utils/utils.h"
 
 int	ft_error(char *str, int err)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:31:20 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/07 05:19:58 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/19 11:15:49 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,25 @@ int	key_handler(int keysym, t_data *data)
 	float	next_y = data->player_y;
 
 	//printf("%d\n", keysym);
-	if (keysym == XK_Escape)
+	if (keysym == XK_Escape || keysym == 65307)
 		close_handler(data);
-	if (keysym == M)
+	if (keysym == M || keysym == 109)
 	{
 		if (data->map_bool == OFF)
 			data->map_bool = ON;
 		else if (data->map_bool == ON)
 			data->map_bool = OFF;
 	}	
-	if (keysym == LEFT)
+	if (keysym == LEFT || keysym == 65361)
 		data->player_angle -= TURN_SPEED;
-	if (keysym == RIGHT)
+	if (keysym == RIGHT || keysym == 65363)
 		data->player_angle += TURN_SPEED;
-	if (keysym == UP)
+	if (keysym == UP || keysym == 65362)
 	{
 		next_y += cos(data->player_angle) * PLAYER_SPEED;
 		next_x += sin(data->player_angle) * PLAYER_SPEED;
 	}
-	if (keysym == DOWN)
+	if (keysym == DOWN || keysym ==65364)
 	{
 		next_y -= cos(data->player_angle) * PLAYER_SPEED;
 		next_x -= sin(data->player_angle) * PLAYER_SPEED;

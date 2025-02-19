@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:49:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/08 02:28:34 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/19 11:17:32 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
+#    By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 15:21:04 by Rigby             #+#    #+#              #
-#    Updated: 2025/02/07 03:09:11 by guillaumeco      ###   ########.fr        #
+#    Updated: 2025/02/19 11:12:54 by kederhet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,13 @@ EXEC = exec
 
 MLX = libmlx.a -framework OpenGL -framework AppKit
 
-#MLX_PATH = mlx_linux/
-#MLX_NAME = libmlx_linux.a
-#MLX = $(MLX_PATH)$(MLX_NAME)
+MLX_PATH = mlx_linux/
+MLX_NAME = libmlx_Linux.a
+MLX = $(MLX_PATH)$(MLX_NAME)
 
-SOURCE =	main str_utils/str_utils errors/error map_checks/read_file $(GNL)/$(GNL) \
-			$(GNL)/$(GNL)_utils $(EXEC)/init $(EXEC)/events $(EXEC)/map $(EXEC)/player \
-			$(EXEC)/image $(EXEC)/draw
+SOURCE =	main utils/str_utils errors/error map_checks/read_file $(GNL)/$(GNL) 			\
+			$(GNL)/$(GNL)_utils $(EXEC)/init $(EXEC)/events $(EXEC)/map $(EXEC)/player 		\
+			$(EXEC)/image $(EXEC)/draw map_checks/checkers utils/tab_utils utils/map_utils	\
 
 SRCS = $(addsuffix .c, $(SOURCE))
 OBJS = $(addsuffix .o, $(SOURCE))
@@ -57,11 +57,10 @@ define progress_bar
 	@if [ $(CURRENT_FILE) -eq $(TOTAL_FILES) ]; then echo "\n"; fi
 endef
 
-all : $(NAME) #$(MLX)
+all : $(NAME)
 
-$(NAME) : $(LIBFTNAME) $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFTNAME) $(INCLUDE) $(MLX)
-#	-lXext -lX11 -lm
+$(NAME) : $(LIBFTNAME) $(OBJS) $(MLX)
+	@$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFTNAME) $(INCLUDE) $(MLX) -lXext -lX11 -lm
 	@$(ECHO) "                                                                                                 \n \
                                       bbbbbbbb                                           dddddddd\n \
         CCCCCCCCCCCCC                 b::::::b             333333333333333               d::::::d\n \
@@ -89,19 +88,20 @@ $(LIBFTNAME):
 	@$(CC) $(CFLAGS) -c $< -o $@
 	$(call progress_bar)
 
-#$(MLX):
-#	make -sC $(MLX_PATH)
+$(MLX):
+	make -sC $(MLX_PATH)
 
 clean :
 	@$(RM) -r $(OBJS)
 	@make clean -C $(LIBFTPATH)
-#	@make clean -C $(MLX_PATH)
+	@make clean -C $(MLX_PATH)
 	@$(ECHO) "[$(NAME)] obj files cleaned."
 
 
 fclean : clean
 	@$(RM) $(NAME)
 	@make fclean -C $(LIBFTPATH)
+	@make clean -C $(MLX_PATH)
 	@$(ECHO) "[$(NAME)] executable removed."
 
 
