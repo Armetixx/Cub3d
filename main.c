@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armetix <armetix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:18:04 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 14:29:32 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:47:04 by armetix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,23 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof(t_data));
 	data->name = "cub3d";
 	data->tmp_map = ft_make_map(fd);
-	//if (!ft_get_playerpos(data))
-	//	return (0);
+	if (!data->tmp_map)
+	{
+		free(data);
+		return (1);
+	}
+	if (!ft_get_playerpos(data))
+	{
+		ft_free_tab(data->tmp_map);
+		free(data);
+		return (1);
+	}
+	data->map = ft_map_to_int(data->tmp_map);
+	if (!ft_check_map_is_valid(data->map))
+	{
+		//free tab de int et data
+		return (1);
+	}
 	start_game(data);
 	mlx_loop(data->mlx_connection);
 	return (0);

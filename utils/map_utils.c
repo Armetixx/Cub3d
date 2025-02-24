@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armetix <armetix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:10:26 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 14:13:23 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:45:45 by armetix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "../includes/cub3d.h"
 
-void	ft_set_player_angle(t_data *data, char cardinal)
+void	ft_set_player_angle(t_data *data, int i, int j)
 {
-	if (cardinal == 'N')
+	if (data->tmp_map[j][i] == 'N')
 		data->player_angle = PI;
-	if (cardinal == 'S')
+	if (data->tmp_map[j][i] == 'S')
 		data->player_angle = 0;
-	if (cardinal == 'E')
+	if (data->tmp_map[j][i] == 'E')
 		data->player_angle = PI / 2;
-	if (cardinal == 'O')
+	if (data->tmp_map[j][i] == 'O')
 		data->player_angle = 3 * PI / 2;
+	data->tmp_map[j][i] = '0';
 }
 
 int	ft_get_playerpos(t_data *data)
@@ -42,7 +43,7 @@ int	ft_get_playerpos(t_data *data)
 			{
 				data->player_x = j;
 				data->player_y = i;
-				ft_set_player_angle(data, data->tmp_map[i][j]);
+				ft_set_player_angle(data, i, j);
 				count++;
 			}
 			i++;
@@ -68,6 +69,7 @@ char **ft_make_map(int fd)
 		ft_free_tab(misc_tab);
 		return (NULL);
 	}
+	ft_free_tab(misc_tab); // tableau avec textures jsp quoi en faire pour l'instant lol
 	map = ft_get_map(fd);
 	if (!ft_check_map(map))
 	{
@@ -75,24 +77,34 @@ char **ft_make_map(int fd)
 		return (NULL);
 	}
 	map = ft_space_in_map(map);
-	tab_print(map);
 	return (map);
 }
 
-// int **ft_map_to_int(char ***map)
-// {
-// 	int	**new_map;
-// 	int	i;
-// 	int	j;
+int **ft_map_to_int(char **map)
+{
+	int	**new_map;
+	int	i;
+	int	j;
 
-// 	i = 0;
-// 	new_map = ft_calloc(sizeof(int *), tab_size(*map));
-// 	while (map[i])
-// 	{
-// 		j = 0;
-// 		while (map[i][j])
-// 		{
-// 			new_map = map[i][j] - 48;
-// 		}
-// 	}
-// }
+	i = 0;
+	new_map = ft_calloc(sizeof(int *), tab_size(map) + 1);
+	while (map[i])
+	{
+		j = 0;
+		new_map[i] = ft_calloc(sizeof(int), ft_strlen(map[i]) + 1);
+		while (map[i][j])
+		{
+			if (map[i][j] == '\n')
+			{
+				new_map[i][j++] = -1;
+				continue ;
+			}
+			new_map[i][j] = map[i][j] - 48;
+			j++;
+		}
+		new_map[i][j] = -1;
+		i++;
+	}
+	new_map[i] = ft_calloc(sizeof(int), 1);
+	return (new_map);
+}

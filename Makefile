@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+         #
+#    By: armetix <armetix@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 15:21:04 by Rigby             #+#    #+#              #
-#    Updated: 2025/02/19 14:28:11 by kederhet         ###   ########.fr        #
+#    Updated: 2025/02/24 13:42:55 by armetix          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ MLX = $(MLX_PATH)$(MLX_NAME)
 SOURCE =	main utils/str_utils errors/error map_checks/read_file $(GNL)/$(GNL) 			\
 			$(GNL)/$(GNL)_utils $(EXEC)/init $(EXEC)/events $(EXEC)/map $(EXEC)/player 		\
 			$(EXEC)/image $(EXEC)/draw map_checks/checkers utils/tab_utils utils/map_utils	\
+			map_checks/checkers2
 
 SRCS = $(addsuffix .c, $(SOURCE))
 OBJS = $(addsuffix .o, $(SOURCE))

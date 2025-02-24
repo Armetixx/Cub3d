@@ -84,7 +84,7 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 
-	int		map[10][10];
+	int		**map;
 	char	**tmp_map;
 	int		map_x;
 	int		map_y;

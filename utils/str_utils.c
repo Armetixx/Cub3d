@@ -57,18 +57,14 @@ char	*ft_replace_space_line(char *str, char to_rep, char add, char **map)
 			new_str[i] = str[i];
 		else
 			new_str[i] = add;
-		printf("%c", new_str[i]);
 		i++;
 	}
 	while (i < ft_longest_str_in_tab(map) - 1)
 	{
-		printf("TEST\n");
-		new_str[i] = add;
-		printf("%c", new_str[i++]);
+		new_str[i++] = add;
 	}
 	new_str[i++] = '\n';
 	new_str[i] = '\0';
-	printf("\n");
 	//free(str);
 	return (new_str);
 }

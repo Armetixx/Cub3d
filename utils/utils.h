@@ -26,9 +26,11 @@ int		ft_line_empty(char *line);
 void	ft_free_tab(char **tab);
 char	**ft_tab_add_line(char **tab, char *line);
 int		tab_print(char **tab);
+int	    tab_print_int(int **tab);
 int		tab_size(char **tab);
 char 	**ft_space_in_map(char **map);
 int		ft_longest_str_in_tab(char **tab);
+int     **ft_map_to_int(char **map);
 
 char 	**ft_make_map(int fd);
 

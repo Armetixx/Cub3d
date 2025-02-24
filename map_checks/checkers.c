@@ -81,8 +81,22 @@ char	**ft_get_map(int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	//free(line);
 	return (map);
+}
+
+static int	ft_is_a_valid_map_char(char *str)
+{
+	int	i;
+
+	i = 0;
+	while(str[i])
+	{
+		if (str[i] != '0' && str[i] != '1' && str[i] != 'N' && str[i] != 'S'
+			&& str[i] != 'E' && str[i] != 'O' && str[i] != 32 && str[i] != 10)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int	ft_check_map(char **map)
@@ -94,6 +108,8 @@ int	ft_check_map(char **map)
 	{
 		if (ft_line_empty(map[i]) && !ft_line_empty(map[i + 1]))
 			return (ft_error("empty line in map", 0));
+		if (!ft_is_a_valid_map_char(map[i]))
+			return (ft_error("wrong character in the map", 0));
 		i++;
 	}
 	return (1);
