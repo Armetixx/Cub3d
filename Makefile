@@ -6,7 +6,7 @@
 #    By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 15:21:04 by Rigby             #+#    #+#              #
-#    Updated: 2025/02/19 13:42:26 by guillaumeco      ###   ########.fr        #
+#    Updated: 2025/02/19 14:39:42 by guillaumeco      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ EXEC = exec
 
 MLX = libmlx.a -framework OpenGL -framework AppKit
 
-MLX_PATH = mlx_linux/
-MLX_NAME = libmlx_Linux.a
-MLX = $(MLX_PATH)$(MLX_NAME)
+#MLX_PATH = mlx_linux/
+#MLX_NAME = libmlx_Linux.a
+#MLX = $(MLX_PATH)$(MLX_NAME)
 
 SOURCE =	main utils/str_utils errors/error map_checks/read_file $(GNL)/$(GNL) 			\
 			$(GNL)/$(GNL)_utils $(EXEC)/init $(EXEC)/events $(EXEC)/map $(EXEC)/player 		\
@@ -59,8 +59,9 @@ endef
 
 all : $(NAME)
 
-$(NAME) : $(LIBFTNAME) $(OBJS) $(MLX)
-	@$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFTNAME) $(INCLUDE) $(MLX) -lXext -lX11 -lm
+$(NAME) : $(LIBFTNAME) $(OBJS) #$(MLX)
+	@$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBFTNAME) $(INCLUDE) $(MLX) 
+#-lXext -lX11 -lm
 	@$(ECHO) "                                                                                                 \n \
                                       bbbbbbbb                                           dddddddd\n \
         CCCCCCCCCCCCC                 b::::::b             333333333333333               d::::::d\n \
@@ -88,20 +89,20 @@ $(LIBFTNAME):
 	@$(CC) $(CFLAGS) -c $< -o $@
 	$(call progress_bar)
 
-$(MLX):
-	make -sC $(MLX_PATH)
+#$(MLX):
+#	make -sC $(MLX_PATH)
 
 clean :
 	@$(RM) -r $(OBJS)
 	@make clean -C $(LIBFTPATH)
-	@make clean -C $(MLX_PATH)
+#	@make clean -C $(MLX_PATH)
 	@$(ECHO) "[$(NAME)] obj files cleaned."
 
 
 fclean : clean
 	@$(RM) $(NAME)
 	@make fclean -C $(LIBFTPATH)
-	@make clean -C $(MLX_PATH)
+#	@make clean -C $(MLX_PATH)
 	@$(ECHO) "[$(NAME)] executable removed."
 
 

@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:49:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/19 13:41:41 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/19 14:24:37 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	map_init(t_data	*data)
 	
 	i = 0;
 	data->map_bool = OFF;
+	data->heart_bool = OFF;
 	data->player_angle = 0;
 	int	map[10][10] = {
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},

@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/19 13:42:14 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/19 14:24:17 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct s_data
 	int		map_y;
 	int		tile_size;	
 	int		map_bool;
+
+	int		heart_bool;
 
 	float	player_x;
 	float	player_y;

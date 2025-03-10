@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:31:20 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/19 13:41:49 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/19 14:46:48 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ int	key_handler(int keysym, t_data *data)
 		else if (data->map_bool == ON)
 			data->map_bool = OFF;
 	}	
+	if (keysym == 49)
+	{
+		if (data->heart_bool == OFF)
+			data->heart_bool = ON;
+		else
+			data->heart_bool = OFF;
+	//	game_loop(data);
+	}
 	if (keysym == LEFT || keysym == 65361)
 		data->player_angle -= TURN_SPEED;
 	if (keysym == RIGHT || keysym == 65363)

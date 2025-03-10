@@ -6,7 +6,7 @@
 /*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 02:59:02 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/17 12:32:01 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/19 14:51:56 by guillaumeco      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void    render_frame(t_data *data)
     render_3d(data); // Calcul du rendu 3D dans l'image
 	draw_heart(data, WIDTH / 2 - 3, HEIGHT / 2 - 3, 2, RED);
 	//draw_cursor(data, 5, RED); // curseur
+	if (data->heart_bool == ON)
+		draw_heart(data, WIDTH / 4 - 3, HEIGHT / 4 - 3, 3, RED);
     mlx_put_image_to_window(data->mlx_connection, data->mlx_window, data->img, 0, 0);
 }
 
