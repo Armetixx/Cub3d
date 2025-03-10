@@ -58,55 +58,14 @@ void	draw_map(t_data *data)
 
 void	map_init(t_data	*data)
 {
-	int	map_y = 10;
-	int	map_x = 10;
-	int	i;
-	int	y;
-	
-	i = 0;
 	data->map_bool = OFF;
 	data->heart_bool = OFF;
 	data->player_angle = 0;
-	int	map[10][10] = {
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 'S', 0, 1},
-		{1, 0, 0, 0, 1, 0, 0, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},	
-	};
-	data->map_x = map_x;
-	data->map_y = map_y;
-	if (map_x > map_y)
-		data->tile_size = WIDTH / map_x;
+	data->map_x = ft_strlen(data->tmp_map[0]);
+	data->map_y = tab_size(data->tmp_map);;
+	if (data->map_x > data->map_y)
+		data->tile_size = WIDTH / data->map_x;
 	else
-		data->tile_size = HEIGHT / map_y;
+		data->tile_size = HEIGHT / data->map_y;
 	data->player_size = data->tile_size / 5;
-	while (i < data->map_y)
-	{
-		y = 0;
-		while (y < data->map_x)
-		{
-			if (map[i][y] == 'N' || map[i][y] == 'S' || map[i][y] == 'O' || map[i][y] == 'E')
-			{
-				data->player_x = y * data->tile_size + (data->tile_size / 2) - (data->player_size);
-				data->player_y = i * data->tile_size + (data->tile_size / 2) - (data->player_size);
-				if (map[i][y] == 'N')
-					data->player_angle = PI;
-				else if (map[i][y] == 'S')
-					data->player_angle = 0;
-				else if (map[i][y] == 'E')
-					data->player_angle = PI / 2;
-				else if (map[i][y] == 'O')
-					data->player_angle = 3*PI / 2;
-			}
-			data->map[i][y] = map[i][y];
-			y++;
-		}
-		i++;
-	}
 }

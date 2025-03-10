@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:21:11 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 11:11:11 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/19 14:47:43 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,14 @@ char	*ft_replace_space_line(char *str, char to_rep, char add, char **map)
 			new_str[i] = str[i];
 		else
 			new_str[i] = add;
-		printf("%c", new_str[i]);
 		i++;
 	}
 	while (i < ft_longest_str_in_tab(map) - 1)
 	{
-		new_str[i] = add;
-		printf("%c", new_str[i++]);
+		new_str[i++] = add;
 	}
 	new_str[i++] = '\n';
 	new_str[i] = '\0';
-	printf("\n");
-	free(str);
+	//free(str);
 	return (new_str);
 }

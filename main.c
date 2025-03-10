@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: armetix <armetix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:18:04 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 13:42:20 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/02/24 13:47:04 by armetix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,31 @@ int	main(int argc, char **argv)
 {
 	int 	fd;
 	t_data	*data;
-	char	**misc_tab;
-	char	**tmp_tab;
-	char	**map;
 	if (!ft_check_arg(argc, argv))
 		return (1);
 	fd = ft_open_file(argv[1]);
 	if (!fd)
 		return (1);
-	tmp_tab = ft_create_misc_tab(fd);
-	misc_tab = ft_sort_misc_tab(tmp_tab);
-	ft_free_tab(tmp_tab);
-	if (!ft_check_misc_tab(misc_tab))
-		return (1);
-	map = ft_get_map(fd);
-	if (!ft_check_map(map))
-		return (1);
-	map = ft_space_in_map(map);
-	tab_print(map);
 	data = malloc(sizeof(t_data));
 	data->name = "cub3d";
+	data->tmp_map = ft_make_map(fd);
+	if (!data->tmp_map)
+	{
+		free(data);
+		return (1);
+	}
+	if (!ft_get_playerpos(data))
+	{
+		ft_free_tab(data->tmp_map);
+		free(data);
+		return (1);
+	}
+	data->map = ft_map_to_int(data->tmp_map);
+	if (!ft_check_map_is_valid(data->map))
+	{
+		//free tab de int et data
+		return (1);
+	}
 	start_game(data);
 	mlx_loop(data->mlx_connection);
 	return (0);

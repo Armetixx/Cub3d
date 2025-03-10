@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armetix <armetix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:23:02 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 11:11:04 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:27:56 by armetix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ char	**ft_sort_misc_tab(char **tab);
 char	*ft_check_empty(int fd);
 int		ft_check_map(char **map);
 char	**ft_get_map(int fd);
+int	    ft_check_map_is_valid(int **map);
 
 #endif

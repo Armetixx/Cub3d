@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tab_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: armetix <armetix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:37:38 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 11:11:26 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:32:19 by armetix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	tab_size(char **tab)
 	return (i);
 }
 
-void	ft_free_tab(char **tab)
+void	 ft_free_tab(char **tab)
 {
 	size_t	i;
 
@@ -70,10 +70,11 @@ char **ft_space_in_map(char **map)
 	new_map = malloc(sizeof(char *) * (tab_size(map) + 1));
 	while (map[i])
 	{
-		new_map[i] = ft_replace_space_line(map[i], ' ', '3', map);
+		new_map[i] = ft_replace_space_line(map[i], ' ', '5', map);
 		i++;
 	}
-	free(map);
+	new_map[i] = NULL;
+	ft_free_tab(map);
 	return (new_map);
 }
 
@@ -102,5 +103,27 @@ int	tab_print(char **tab) // temporaire
 	i = -1;
 	while (tab[++i])
 		printf("tab[%d] : %s", i, tab[i]);
+	return (i);
+}
+
+int	tab_print_int(int **tab) // temporaire
+{
+	int	i;
+	int	j;
+
+	if (!tab)
+		return (0);
+	i = -1;
+	while (tab[++i])
+	{
+		j = 0;
+		printf("tab[%d] :", i);
+		while (tab[i][j] != -1)
+		{
+			printf("%d", tab[i][j]);
+			j++;
+		}
+		printf("\n");
+	}
 	return (i);
 }
