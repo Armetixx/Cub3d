@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:49:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/19 14:24:37 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/03/13 14:35:14 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,5 @@ void	map_init(t_data	*data)
 	data->map_bool = OFF;
 	data->heart_bool = OFF;
 	data->player_angle = 0;
-	data->map_x = ft_strlen(data->tmp_map[0]);
-	data->map_y = tab_size(data->tmp_map);;
-	if (data->map_x > data->map_y)
-		data->tile_size = WIDTH / data->map_x;
-	else
-		data->tile_size = HEIGHT / data->map_y;
 	data->player_size = data->tile_size / 5;
 }

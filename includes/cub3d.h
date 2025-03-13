@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/10 11:39:47 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/03/13 14:30:55 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,22 @@ typedef struct s_data
 	float	player_size;
 	float	player_angle;
 	
+	t_texture north_texture;
+	t_texture south_texture;
+	t_texture east_texture;
+	t_texture west_texture;
+	int texture_width;
+	int texture_height;
+	
 	int		*pmap;
 }	t_data;
+
+typedef struct s_ray_hit
+{
+    float distance;
+    int direction;  // 0=North, 1=South, 2=East, 3=West
+    float wall_x;   // Position on wall (0-1)
+} t_ray_hit;
 
 //---------- Events ----------//
 
@@ -144,5 +158,10 @@ void	draw_vertical_line(t_data *data, int x, int start, int end, int color);
 void    put_pixel_to_image(t_data *data, int x, int y, int color);
 void    render_frame(t_data *data);
 void	clear_image(t_data *data, int color);
+
+
+void load_textures(t_data *data);
+int get_texture_color(t_texture *texture, int tex_x, int tex_y);
+void draw_textured_vertical(t_data *data, int x, int start, int end, t_ray_hit *hit);
 
 #endif

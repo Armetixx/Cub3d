@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armetix <armetix@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:10:26 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/24 13:45:45 by armetix          ###   ########.fr       */
+/*   Updated: 2025/03/13 14:17:17 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,14 @@ int	ft_get_playerpos(t_data *data)
 		{
 			if (data->tmp_map[j][i] == 'N' || data->tmp_map[j][i] == 'S' || data->tmp_map[j][i] == 'E' || data->tmp_map[j][i] == 'O') //player_angle = N: pi, S: 0, E: pi/2, O: 3*pi/2
 			{
-				data->player_x = j;
-				data->player_y = i;
+				data->map_x = ft_strlen(data->tmp_map[0]);
+				data->map_y = tab_size(data->tmp_map);;
+				if (data->map_x > data->map_y)
+					data->tile_size = WIDTH / data->map_x;
+				else
+					data->tile_size = HEIGHT / data->map_y;
+				data->player_x = i * data->tile_size;
+				data->player_y = j * data->tile_size;
 				ft_set_player_angle(data, i, j);
 				count++;
 			}
