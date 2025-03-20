@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:18:04 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/18 13:22:04 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:47:46 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	update_game(t_data *data)
 
 void	start_game(t_data *data)
 {
-	cub3d_init(data);
+	cub3d_init(data);  // rajouter des secu a l interieur
 	map_init(data);
 	events_init(data);
 }
@@ -43,19 +43,15 @@ int	main(int argc, char **argv)
 	int		fd;
 	t_data	*data;
 
-	if (!ft_check_arg(argc, argv))
-		return (1);
+	//if (!ft_check_arg(argc, argv))
+	//	return (1);
 	fd = ft_open_file(argv[1]);
-	if (!fd)
+	if (!ft_check_arg(argc, argv) || !fd)
 		return (1);
 	data = malloc(sizeof(t_data));
-	data->name = "cub3d";
 	data->tmp_map = ft_make_map(fd);
 	if (!data->tmp_map)
-	{
-		free(data);
-		return (1);
-	}
+		return (free(data), 1);
 	if (!ft_get_playerpos(data))
 	{
 		ft_free_tab(data->tmp_map);

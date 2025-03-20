@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:18:33 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/17 14:55:10 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:46:28 by gcools           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	events_init(t_data *data)
 
 void	cub3d_init(t_data*data)
 {
+	data->name = "cub3d";
 	data->mlx_connection = mlx_init();
 	if (data->mlx_connection == NULL)
 		malloc_error();
