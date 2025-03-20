@@ -6,10 +6,9 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/20 16:37:27 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 19:23:39 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -101,6 +100,8 @@ typedef struct s_data
 	char		*south;
 	char		*west;
 	char		*east;
+	char		*floor;
+	char		*ceiling;
 	int			tex_w;
 	int			tex_h;
 
@@ -123,7 +124,6 @@ typedef struct s_dda_ray
 	float	wall_dist;
 	float	wall_x;
 }	t_dda_ray;
-
 
 typedef struct s_ray_hit
 {
@@ -172,7 +172,6 @@ int		ft_set_wall_direction(t_dda_ray dda);
 void	render_3d(t_data *data);
 void	draw_square(t_data *data, int x, int y, int color);
 void	draw_line(t_data *data, int x1, int y1, int x2, int y2, int color);
-void	draw_vertical_line(t_data *data, int x, int start, int end, int color);
 
 //---------- MLX-IMG ----------//
 
@@ -188,5 +187,6 @@ void	load_textures(t_data *data);
 int		get_texture_color(t_texture *texture, int tex_x, int tex_y);
 void	draw_textured_vertical(t_data *data, int x,
 			int start, int end, t_ray_hit *hit);
+char	**ft_sort_misc_tab(char **tab, t_data *data);
 
 #endif

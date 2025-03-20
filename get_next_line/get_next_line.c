@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kederhet <kederhet@student.s19.be>         +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 13:26:36 by kederhet          #+#    #+#             */
-/*   Updated: 2023/11/30 17:28:26 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 17:34:33 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,31 +78,8 @@ char	*ft_data_to_line(char *line, char *data)
 
 char	*ft_clear_data(char *data)
 {
-	int		i;
-	int		j;
-	char	*next;
-
-	i = 0;
-	if (!data)
-		return (NULL);
-	while (data[i] != '\n' && data[i])
-		i++;
-	if (!data[i])
-	{
-		ft_free (data);
-		return (NULL);
-	}
-	next = ft_calloc(ft_strlen(data + i) + 1, sizeof(char));
-	if (!next)
-		return (ft_free(data), NULL);
-	if (data[i] == '\n')
-		i++;
-	j = 0;
-	while (data[i])
-		next[j++] = data[i++];
-	next[j] = '\0';
-	ft_free(data);
-	return (next);
+	free(data);
+	return (NULL);
 }
 
 char	*get_next_line(int fd)
@@ -128,8 +105,6 @@ char	*get_next_line(int fd)
 	if (!data)
 		return (NULL);
 	line = ft_data_to_line(line, data);
-	if (!line)
-		data = ft_free(data);
 	data = ft_clear_data(data);
 	return (line);
 }

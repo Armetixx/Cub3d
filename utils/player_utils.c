@@ -6,12 +6,11 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:33:27 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/20 15:52:07 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 19:13:36 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 void	ft_wall_hit_direction(t_data *data, t_ray_hit *hit,
 			float prev_x, float prev_y)
@@ -77,8 +76,23 @@ void	draw_cursor(t_data *data, int size, int color)
 	}
 }
 
-int	ft_convert_rgb(int r, int g, int b)
+int	ft_convert_rgb(char *str)
 {
+	int	r;
+	int	g;
+	int	b;
+	int	i;
+
+	i = 1;
+	while (ft_isspace(str[i]) && str[i])
+		i++;
+	r = ft_atoi(str + i);
+	while (str[i] && str[i] != ',')
+		i++;
+	g = ft_atoi(str + ++i);
+	while (str[i] && str[i] != ',')
+		i++;
+	b = ft_atoi(str + ++i);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		return (ft_error("rgb outside range", 0));
 	return (r << 16 | g << 8 | b);

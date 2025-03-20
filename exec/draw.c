@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 03:02:09 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/20 15:38:29 by gcools           ###   ########.fr       */
+/*   Updated: 2025/03/20 19:00:58 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	draw_square(t_data *data, int x, int y, int color)
 		while (j < data->tile_size)
 		{
 			if (i == 0 || j == 0)
-				put_pixel_to_image(data, x + j, y + i, BLACK); // Bordures en noir
+				put_pixel_to_image(data, x + j, y + i, BLACK);
 			else
-				put_pixel_to_image(data, x + j, y + i, color); // Intérieur coloré
+				put_pixel_to_image(data, x + j, y + i, color);
 			j++;
 		}
 		i++;
@@ -68,23 +68,6 @@ void	draw_line(t_data *data, int x1, int y1, int x2, int y2, int color)
 	}
 }
 
-void	draw_vertical_line(t_data *data, int x, int start, int end, int color)
-{
-	int	y;
-
-	y = 0;
-	while (y < HEIGHT)
-	{
-		if (y < start)
-			put_pixel_to_image(data, x, y, SKY_COLOR);
-		else if (y > end)
-			put_pixel_to_image(data, x, y, FLOOR_COLOR);
-		else
-			put_pixel_to_image(data, x, y, color);
-		y++;
-	}
-}
-
 void	draw_textured_vertical(t_data *data, int x, int start,
 										int end, t_ray_hit *hit)
 {
@@ -109,9 +92,9 @@ void	draw_textured_vertical(t_data *data, int x, int start,
 	while (y < HEIGHT)
 	{
 		if (y < start)
-			put_pixel_to_image(data, x, y, SKY_COLOR);
+			put_pixel_to_image(data, x, y, ft_convert_rgb(data->ceiling));
 		else if (y > end)
-			put_pixel_to_image(data, x, y, FLOOR_COLOR);
+			put_pixel_to_image(data, x, y, ft_convert_rgb(data->floor));
 		else
 		{
 			tex_y = (int)((y - start) / (float)(end - start)

@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:06:49 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/18 15:16:12 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 19:16:25 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	**ft_create_misc_tab(int fd)
 	return (tab);
 }
 
-char	**ft_sort_misc_tab(char **tab)
+char	**ft_sort_misc_tab(char **tab, t_data *data)
 {
 	int		i;
 	char	**misc_tab;
@@ -92,5 +92,7 @@ char	**ft_sort_misc_tab(char **tab)
 		i++;
 	}
 	misc_tab[6] = NULL;
+	data->floor = ft_strdup(misc_tab[4]);
+	data->ceiling = ft_strdup(misc_tab[5]);
 	return (misc_tab);
 }

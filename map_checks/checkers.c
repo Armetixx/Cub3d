@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:09:27 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/18 15:36:02 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:36:19 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_check_misc_line(char *line)
 	int	i;
 
 	i = 0;
-	while (!ft_isspace(line[i]))
+	while (!ft_isspace(line[i]) && line[i])
 		i++;
 	if (!line[i] || line[i] == '\n')
 		return (ft_error("A line before the map was incorrect.", 0));

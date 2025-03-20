@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:31:20 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/20 15:10:07 by gcools           ###   ########.fr       */
+/*   Updated: 2025/03/20 19:08:25 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,22 @@
 
 int	close_handler(t_data *data)
 {
+	mlx_destroy_image(data->mlx_connection, data->north_texture.img);
+	mlx_destroy_image(data->mlx_connection, data->south_texture.img);
+	mlx_destroy_image(data->mlx_connection, data->east_texture.img);
+	mlx_destroy_image(data->mlx_connection, data->west_texture.img);
+	mlx_destroy_image(data->mlx_connection, data->img);
 	mlx_destroy_window(data->mlx_connection, data->mlx_window);
+	mlx_destroy_display(data->mlx_connection);
+	ft_free_int_tab(data->map);
 	free(data->mlx_connection);
+	free(data->north);
+	free(data->south);
+	free(data->east);
+	free(data->west);
+	free(data->floor);
+	free(data->ceiling);
+	free(data);
 	exit(EXIT_SUCCESS);
 }
 
@@ -55,7 +69,6 @@ void	mouvement_gestion(t_data *data, int keysym)
 
 int	key_handler(int keysym, t_data *data)
 {
-	//printf("%d\n", keysym);
 	if (keysym == XK_Escape || keysym == 65307)
 		close_handler(data);
 	if (keysym == 109)

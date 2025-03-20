@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 02:59:02 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/17 13:15:11 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:23:55 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ void	put_pixel_to_image(t_data *data, int x, int y, int color)
 void	render_frame(t_data *data)
 {
 	clear_image(data, BLACK);
-	//mlx_clear_window(data->mlx_connection, data->mlx_window);
-	render_3d(data); // Calcul du rendu 3D dans l'image
-	draw_cursor(data, 5, RED); // curseur
+	render_3d(data);
+	draw_cursor(data, 5, RED);
 	mlx_put_image_to_window(data->mlx_connection,
 		data->mlx_window, data->img, 0, 0);
 }

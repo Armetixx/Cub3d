@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tab_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gcools <gcools@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:37:38 by kederhet          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/03/20 15:34:40 by kederhet         ###   ########.fr       */
-=======
-/*   Updated: 2025/03/20 14:41:10 by gcools           ###   ########.fr       */
->>>>>>> refs/remotes/origin/master
+/*   Updated: 2025/03/20 19:21:15 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,37 +93,3 @@ int	ft_longest_str_in_tab(char **tab)
 	}
 	return (count);
 }
-
-int	tab_print(char **tab) // temporaire
-{
-	int	i;
-
-	if (!tab)
-		return (0);
-	i = -1;
-	while (tab[++i])
-		printf("tab[%d] : %s", i, tab[i]);
-	return (i);
-}
-
-// int	tab_print_int(int **tab) // temporaire
-// {
-// 	int	i;
-// 	int	j;
-
-// 	if (!tab)
-// 		return (0);
-// 	i = -1;
-// 	while (tab[++i])
-// 	{
-// 		j = 0;
-// 		printf("tab[%d] :", i);
-// 		while (tab[i][j] != -1)
-// 		{
-// 			printf("%d", tab[i][j]);
-// 			j++;
-// 		}
-// 		printf("\n");
-// 	}
-// 	return (i);
-// }
