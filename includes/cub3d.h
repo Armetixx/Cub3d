@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/20 16:32:17 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:37:27 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,11 @@
 
 # define PLAYER_SPEED 10
 # define TURN_SPEED 0.1
-# define FOV 60 * (M_PI / 180) // largeur du fov
+# define FOV 1.047198 // largeur du fov (60 * (PI / 180))
 # define NUM_RAYS 100 // nombre de rays du fov
 # define RAY_STEP 0.1 //distance de detection des rays
-# define COLLISION 0.1 // marge d'erreur pour les collision 
 # define MAX_DIST 1000 //view distance
 # define PI 3.141592653589793238462
-
-//---------- KEYS ----------//
-
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RIGHT 124
-# define M 41
 
 //---------- COLOR ----------//
 
@@ -94,6 +85,8 @@ typedef struct s_data
 
 	float		player_x;
 	float		player_y;
+	float		next_x;
+	float		next_y;
 
 	float		center_x;
 	float		center_y;
@@ -188,6 +181,8 @@ void	render_frame(t_data *data);
 void	clear_image(t_data *data, int color);
 int		ft_textures_to_data(t_data *data, char **tab);
 char	**ft_make_map(int fd, t_data *data);
+
+//---------- TEXTURES ----------//
 
 void	load_textures(t_data *data);
 int		get_texture_color(t_texture *texture, int tex_x, int tex_y);

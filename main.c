@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:18:04 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/20 16:02:28 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:38:49 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	update_game(t_data *data)
 
 void	start_game(t_data *data)
 {
-	cub3d_init(data);
+	cub3d_init(data);  // rajouter des secu a l interieur
 	map_init(data);
 	events_init(data);
 }
@@ -49,13 +49,10 @@ int	main(int argc, char **argv)
 	if (!fd)
 		return (1);
 	data = malloc(sizeof(t_data));
-	data->name = "cub3d";
+	data->tmp_map = ft_make_map(fd, data);
 	data->tmp_map = ft_make_map(fd, data);
 	if (!data->tmp_map)
-	{
-		free(data);
-		return (1);
-	}
+		return (free(data), 1);
 	if (!ft_get_playerpos(data))
 	{
 		ft_free_tab(data->tmp_map);
