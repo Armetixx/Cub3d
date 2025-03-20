@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tab_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armetix <armetix@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:37:38 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/24 13:32:19 by armetix          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:25:07 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../includes/utils.h"
 
 int	tab_size(char **tab)
 {
@@ -24,7 +24,7 @@ int	tab_size(char **tab)
 	return (i);
 }
 
-void	 ft_free_tab(char **tab)
+void	ft_free_tab(char **tab)
 {
 	size_t	i;
 
@@ -61,10 +61,10 @@ char	**ft_tab_add_line(char	**tab, char *line)
 	return (tmp);
 }
 
-char **ft_space_in_map(char **map)
+char	**ft_space_in_map(char **map)
 {
-	int	i;
-	char **new_map;
+	int		i;
+	char	**new_map;
 
 	i = 0;
 	new_map = malloc(sizeof(char *) * (tab_size(map) + 1));
@@ -82,7 +82,7 @@ int	ft_longest_str_in_tab(char **tab)
 {
 	int	i;
 	int	count;
-	
+
 	i = 0;
 	count = 0;
 	while (tab[i])
@@ -94,36 +94,36 @@ int	ft_longest_str_in_tab(char **tab)
 	return (count);
 }
 
-int	tab_print(char **tab) // temporaire
-{
-	int	i;
+// int	tab_print(char **tab) // temporaire
+// {
+// 	int	i;
 
-	if (!tab)
-		return (0);
-	i = -1;
-	while (tab[++i])
-		printf("tab[%d] : %s", i, tab[i]);
-	return (i);
-}
+// 	if (!tab)
+// 		return (0);
+// 	i = -1;
+// 	while (tab[++i])
+// 		printf("tab[%d] : %s", i, tab[i]);
+// 	return (i);
+// }
 
-int	tab_print_int(int **tab) // temporaire
-{
-	int	i;
-	int	j;
+// int	tab_print_int(int **tab) // temporaire
+// {
+// 	int	i;
+// 	int	j;
 
-	if (!tab)
-		return (0);
-	i = -1;
-	while (tab[++i])
-	{
-		j = 0;
-		printf("tab[%d] :", i);
-		while (tab[i][j] != -1)
-		{
-			printf("%d", tab[i][j]);
-			j++;
-		}
-		printf("\n");
-	}
-	return (i);
-}
+// 	if (!tab)
+// 		return (0);
+// 	i = -1;
+// 	while (tab[++i])
+// 	{
+// 		j = 0;
+// 		printf("tab[%d] :", i);
+// 		while (tab[i][j] != -1)
+// 		{
+// 			printf("%d", tab[i][j]);
+// 			j++;
+// 		}
+// 		printf("\n");
+// 	}
+// 	return (i);
+// }

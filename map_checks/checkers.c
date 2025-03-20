@@ -6,11 +6,11 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:09:27 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 14:43:32 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:36:02 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "../includes/map.h"
 
 int	ft_check_misc_line(char *line)
 {
@@ -51,19 +51,8 @@ int	ft_check_misc_tab(char **tab)
 			return (ft_error("Wrong identifier for cardinal.", 0));
 		i++;
 	}
-	while (tab[i])
-	{
-		j = 0;
-		if (!ft_check_misc_line(tab[i]))
-			return (0);
-		while (!ft_isspace(tab[i][j]))
-			j++;
-		if (j > 1)
-			return (ft_error("Wrong identifier for floor or ceiling.", 0));
-		i++;
-	}
-	if (i != 6)
-		return (ft_error("Wrong identifier or duplicated detected.", 0));
+	if (!ft_check_misc_tab_2(tab, i))
+		return (0);
 	return (1);
 }
 
@@ -89,7 +78,7 @@ static int	ft_is_a_valid_map_char(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] != '0' && str[i] != '1' && str[i] != 'N' && str[i] != 'S'
 			&& str[i] != 'E' && str[i] != 'O' && str[i] != 32 && str[i] != 10)
@@ -102,7 +91,7 @@ static int	ft_is_a_valid_map_char(char *str)
 int	ft_check_map(char **map)
 {
 	int	i;
-	
+
 	i = 0;
 	while (map[i])
 	{
@@ -114,4 +103,3 @@ int	ft_check_map(char **map)
 	}
 	return (1);
 }
-

@@ -3,63 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guillaumecools <guillaumecools@student.    +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 02:59:02 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/02/19 14:51:56 by guillaumeco      ###   ########.fr       */
+/*   Updated: 2025/03/17 13:15:11 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void draw_heart(t_data *data, int x, int y, int size, int color) // Pour la blague, a retirer
+void	put_pixel_to_image(t_data *data, int x, int y, int color)
 {
-	int	i;
-	int	j;
-    int heart_shape[7][7] = {
-        {0, 1, 0, 0, 0, 1, 0},
-        {1, 1, 1, 0, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1},
-        {0, 1, 1, 1, 1, 1, 0},
-        {0, 0, 1, 1, 1, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0}
-    };
+	char	*dst;
 
-	i = 0;
-    while (i < 7)
-    {
-		j = 0;
-        while (j < 7)
-        {
-            if (heart_shape[i][j] == 1)
-                put_pixel_to_image(data, x + j * size, y + i * size, color);
-			j++;
-        }
-		i++;
-    }
+	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+	{
+		dst = data->addr + (y * data->line_length + x
+				* (data->bits_per_pixel / 8));
+		*(unsigned int *)dst = color;
+	}
 }
 
-void    put_pixel_to_image(t_data *data, int x, int y, int color)
-{
-    char    *dst;
-
-    if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-    {
-        dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-        *(unsigned int*)dst = color;
-    }
-}
-
-void    render_frame(t_data *data)
+void	render_frame(t_data *data)
 {
 	clear_image(data, BLACK);
-    //mlx_clear_window(data->mlx_connection, data->mlx_window);
-    render_3d(data); // Calcul du rendu 3D dans l'image
-	draw_heart(data, WIDTH / 2 - 3, HEIGHT / 2 - 3, 2, RED);
-	//draw_cursor(data, 5, RED); // curseur
-	if (data->heart_bool == ON)
-		draw_heart(data, WIDTH / 4 - 3, HEIGHT / 4 - 3, 3, RED);
-    mlx_put_image_to_window(data->mlx_connection, data->mlx_window, data->img, 0, 0);
+	//mlx_clear_window(data->mlx_connection, data->mlx_window);
+	render_3d(data); // Calcul du rendu 3D dans l'image
+	draw_cursor(data, 5, RED); // curseur
+	mlx_put_image_to_window(data->mlx_connection,
+		data->mlx_window, data->img, 0, 0);
 }
 
 void	clear_image(t_data *data, int color)
@@ -79,4 +51,3 @@ void	clear_image(t_data *data, int color)
 		y++;
 	}
 }
-

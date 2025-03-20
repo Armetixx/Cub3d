@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/13 14:30:55 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:15:59 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 //# include "../mlx_mac/mlx.h"
 # include "../mlx_linux/mlx.h"
-# include "../errors/errors.h"
-# include "../map_checks/map.h"
+# include "errors.h"
+# include "map.h"
 
 //# include "libft/libft.h"
 # include <stdio.h> // A retirer
@@ -44,11 +44,11 @@
 
 //---------- KEYS ----------//
 
-#define UP 126
-#define DOWN 125
-#define LEFT 123
-#define RIGHT 124
-#define M 41
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define M 41
 
 //---------- COLOR ----------//
 
@@ -75,53 +75,51 @@ typedef struct s_texture
 
 typedef struct s_data
 {
-	char	*name;
-	void	*mlx_connection; // mlx_init()
-	void	*mlx_window; // mlx_new_window()
-	char	*addr;
-	void	*img;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	char		*name;
+	void		*mlx_connection; // mlx_init()
+	void		*mlx_window; // mlx_new_window()
+	char		*addr;
+	void		*img;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 
-	int		**map;
-	char	**tmp_map;
-	int		map_x;
-	int		map_y;
-	int		tile_size;	
-	int		map_bool;
+	int			**map;
+	char		**tmp_map;
+	int			map_x;
+	int			map_y;
+	int			tile_size;	
+	int			map_bool;
 
-	int		heart_bool;
+	float		player_x;
+	float		player_y;
 
-	float	player_x;
-	float	player_y;
+	float		center_x;
+	float		center_y;
+	float		player_size;
+	float		player_angle;
 
-	float	center_x;
-	float	center_y;
-	float	player_size;
-	float	player_angle;
-	
-	t_texture north_texture;
-	t_texture south_texture;
-	t_texture east_texture;
-	t_texture west_texture;
-	int texture_width;
-	int texture_height;
-	
-	int		*pmap;
+	t_texture	north_texture;
+	t_texture	south_texture;
+	t_texture	east_texture;
+	t_texture	west_texture;
+	int			tex_w;
+	int			tex_h;
+
+	int			*pmap;
 }	t_data;
 
 typedef struct s_ray_hit
 {
-    float distance;
-    int direction;  // 0=North, 1=South, 2=East, 3=West
-    float wall_x;   // Position on wall (0-1)
-} t_ray_hit;
+	float	distance;
+	int		direction;
+	float	wall_x;
+}	t_ray_hit;
 
 //---------- Events ----------//
 
 void	events_init(t_data *data);
-int 	close_handler(t_data *data);
+int		close_handler(t_data *data);
 int		key_handler(int keysym, t_data *data);
 
 //---------- INITS ----------//
@@ -143,7 +141,7 @@ int		is_wall(t_data *data, float x, float y, int is_for_ray);
 
 void	draw_player(t_data *data);
 void	cast_fov(t_data *data);
-void 	draw_cursor(t_data *data, int size, int color);
+void	draw_cursor(t_data *data, int size, int color);
 int		ft_get_playerpos(t_data *data);
 
 //---------- DRAWING ----------//
@@ -155,13 +153,14 @@ void	draw_vertical_line(t_data *data, int x, int start, int end, int color);
 
 //---------- MLX-IMG ----------//
 
-void    put_pixel_to_image(t_data *data, int x, int y, int color);
-void    render_frame(t_data *data);
+void	put_pixel_to_image(t_data *data, int x, int y, int color);
+void	render_frame(t_data *data);
 void	clear_image(t_data *data, int color);
 
 
-void load_textures(t_data *data);
-int get_texture_color(t_texture *texture, int tex_x, int tex_y);
-void draw_textured_vertical(t_data *data, int x, int start, int end, t_ray_hit *hit);
+void	load_textures(t_data *data);
+int		get_texture_color(t_texture *texture, int tex_x, int tex_y);
+void	draw_textured_vertical(t_data *data, int x,
+			int start, int end, t_ray_hit *hit);
 
 #endif

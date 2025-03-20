@@ -6,11 +6,11 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:06:49 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/14 14:43:43 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:16:12 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "../includes/map.h"
 
 int	ft_open_file(char *filename)
 {
@@ -26,7 +26,7 @@ char	*ft_check_empty(int fd)
 {
 	char	*line;
 	int		i;
-	
+
 	i = 0;
 	line = get_next_line(fd);
 	while (ft_isspace(line[i]) || line[i] == '\n')

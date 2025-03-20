@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   checkers2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armetix <armetix@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:12:03 by armetix           #+#    #+#             */
-/*   Updated: 2025/02/24 13:42:52 by armetix          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:34:49 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "../includes/map.h"
 
 int	ft_check_map_is_valid(int **map)
 {
@@ -38,5 +38,25 @@ int	ft_check_map_is_valid(int **map)
 			}
 		}
 	}
+	return (1);
+}
+
+int	ft_check_misc_tab_2(char **tab, int i)
+{
+	int	j;
+
+	while (tab[i])
+	{
+		j = 0;
+		if (!ft_check_misc_line(tab[i]))
+			return (0);
+		while (!ft_isspace(tab[i][j]))
+			j++;
+		if (j > 1)
+			return (ft_error("Wrong identifier for floor or ceiling.", 0));
+		i++;
+	}
+	if (i != 6)
+		return (ft_error("Wrong identifier or duplicated detected.", 0));
 	return (1);
 }

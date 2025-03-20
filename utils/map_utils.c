@@ -6,11 +6,11 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:10:26 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/13 14:17:17 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:24:26 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../includes/utils.h"
 #include "../includes/cub3d.h"
 
 void	ft_set_player_angle(t_data *data, int i, int j)
@@ -26,42 +26,46 @@ void	ft_set_player_angle(t_data *data, int i, int j)
 	data->tmp_map[j][i] = '0';
 }
 
+static void	ft_init_data_map(t_data *data)
+{
+	data->map_x = ft_strlen(data->tmp_map[0]);
+	data->map_y = tab_size(data->tmp_map);
+	if (data->map_x > data->map_y)
+		data->tile_size = WIDTH / data->map_x;
+	else
+		data->tile_size = HEIGHT / data->map_y;
+}
+
 int	ft_get_playerpos(t_data *data)
 {
 	int	i;
 	int	j;
 	int	count;
 
-	j = 0;
+	j = -1;
 	count = 0;
-	while (data->tmp_map[j])
+	ft_init_data_map(data);
+	while (data->tmp_map[++j])
 	{
-		i = 0;
-		while (data->tmp_map[j][i])
+		i = -1;
+		while (data->tmp_map[j][++i])
 		{
-			if (data->tmp_map[j][i] == 'N' || data->tmp_map[j][i] == 'S' || data->tmp_map[j][i] == 'E' || data->tmp_map[j][i] == 'O') //player_angle = N: pi, S: 0, E: pi/2, O: 3*pi/2
+			if (data->tmp_map[j][i] == 'N' || data->tmp_map[j][i] == 'S'
+					|| data->tmp_map[j][i] == 'E' || data->tmp_map[j][i] == 'O')
 			{
-				data->map_x = ft_strlen(data->tmp_map[0]);
-				data->map_y = tab_size(data->tmp_map);;
-				if (data->map_x > data->map_y)
-					data->tile_size = WIDTH / data->map_x;
-				else
-					data->tile_size = HEIGHT / data->map_y;
 				data->player_x = i * data->tile_size;
 				data->player_y = j * data->tile_size;
 				ft_set_player_angle(data, i, j);
 				count++;
 			}
-			i++;
 		}
-		j++;
 	}
 	if (count != 1)
 		return (ft_error("Wrong number of player in the map", 0));
 	return (1);
 }
 
-char **ft_make_map(int fd)
+char	**ft_make_map(int fd)
 {
 	char	**misc_tab;
 	char	**tmp_tab;
@@ -75,7 +79,7 @@ char **ft_make_map(int fd)
 		ft_free_tab(misc_tab);
 		return (NULL);
 	}
-	ft_free_tab(misc_tab); // tableau avec textures jsp quoi en faire pour l'instant lol
+	ft_free_tab(misc_tab);
 	map = ft_get_map(fd);
 	if (!ft_check_map(map))
 	{
@@ -86,7 +90,7 @@ char **ft_make_map(int fd)
 	return (map);
 }
 
-int **ft_map_to_int(char **map)
+int	**ft_map_to_int(char **map)
 {
 	int	**new_map;
 	int	i;

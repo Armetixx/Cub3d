@@ -6,13 +6,13 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:31:20 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/13 14:30:32 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:01:56 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int 	close_handler(t_data *data)
+int	close_handler(t_data *data)
 {
 	mlx_destroy_window(data->mlx_connection, data->mlx_window);
 	free(data->mlx_connection);
@@ -29,18 +29,11 @@ int	key_handler(int keysym, t_data *data)
 		close_handler(data);
 	if (keysym == M || keysym == 109)
 	{
+		printf("#1\n");
 		if (data->map_bool == OFF)
 			data->map_bool = ON;
 		else if (data->map_bool == ON)
 			data->map_bool = OFF;
-	}	
-	if (keysym == 49)
-	{
-		if (data->heart_bool == OFF)
-			data->heart_bool = ON;
-		else
-			data->heart_bool = OFF;
-	//	game_loop(data);
 	}
 	if (keysym == LEFT || keysym == 65361)
 		data->player_angle -= TURN_SPEED;
@@ -51,12 +44,11 @@ int	key_handler(int keysym, t_data *data)
 		next_y += cos(data->player_angle) * PLAYER_SPEED;
 		next_x += sin(data->player_angle) * PLAYER_SPEED;
 	}
-	if (keysym == DOWN || keysym ==65364)
+	if (keysym == DOWN || keysym == 65364)
 	{
 		next_y -= cos(data->player_angle) * PLAYER_SPEED;
 		next_x -= sin(data->player_angle) * PLAYER_SPEED;
 	}
-
 	// Vérifie s'il y a un mur avant d'appliquer le mouvement
 	if (!is_wall(data, next_x, data->player_y, 0))
 		data->player_x = next_x;
@@ -64,4 +56,3 @@ int	key_handler(int keysym, t_data *data)
 		data->player_y = next_y;
 	return (0);
 }
-

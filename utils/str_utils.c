@@ -6,11 +6,11 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:21:11 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 14:47:43 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:14:13 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../includes/utils.h"
 
 void	ft_putchar(char c)
 {
@@ -48,7 +48,7 @@ char	*ft_replace_space_line(char *str, char to_rep, char add, char **map)
 {
 	int		i;
 	char	*new_str;
-	
+
 	i = 0;
 	new_str = malloc(sizeof(char) * (ft_longest_str_in_tab(map) + 1));
 	while (str[i] && str[i] != '\n')
@@ -65,6 +65,5 @@ char	*ft_replace_space_line(char *str, char to_rep, char add, char **map)
 	}
 	new_str[i++] = '\n';
 	new_str[i] = '\0';
-	//free(str);
 	return (new_str);
 }

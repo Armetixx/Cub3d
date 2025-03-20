@@ -6,17 +6,17 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:43:05 by kederhet          #+#    #+#             */
-/*   Updated: 2025/02/19 14:25:30 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:13:44 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STR_UTILS_H
-# define STR_UTILS_H
+#ifndef UTILS_H
+# define UTILS_H
 
 # include <unistd.h>
 # include <stdio.h> // RETIRER A SUPP
 # include "../libft/libft.h"
-# include "../includes/cub3d.h"
+# include "cub3d.h"
 
 void	ft_putstr(char *str);
 void	ft_putchar(char c);
@@ -26,12 +26,12 @@ int		ft_line_empty(char *line);
 void	ft_free_tab(char **tab);
 char	**ft_tab_add_line(char **tab, char *line);
 int		tab_print(char **tab);
-int	    tab_print_int(int **tab);
+int		tab_print_int(int **tab);
 int		tab_size(char **tab);
-char 	**ft_space_in_map(char **map);
+char	**ft_space_in_map(char **map);
 int		ft_longest_str_in_tab(char **tab);
-int     **ft_map_to_int(char **map);
+int		**ft_map_to_int(char **map);
 
-char 	**ft_make_map(int fd);
+char	**ft_make_map(int fd);
 
 #endif
