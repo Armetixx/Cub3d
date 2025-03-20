@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:18:04 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/18 13:22:04 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:02:28 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 		return (1);
 	data = malloc(sizeof(t_data));
 	data->name = "cub3d";
-	data->tmp_map = ft_make_map(fd);
+	data->tmp_map = ft_make_map(fd, data);
 	if (!data->tmp_map)
 	{
 		free(data);

@@ -6,7 +6,7 @@
 #    By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 15:21:04 by Rigby             #+#    #+#              #
-#    Updated: 2025/03/13 14:13:28 by kederhet         ###   ########.fr        #
+#    Updated: 2025/03/20 15:58:02 by kederhet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ MLX = $(MLX_PATH)$(MLX_NAME)
 SOURCE =	main utils/str_utils errors/error map_checks/read_file $(GNL)/$(GNL) 			\
 			$(GNL)/$(GNL)_utils $(EXEC)/init $(EXEC)/events $(EXEC)/map $(EXEC)/player 		\
 			$(EXEC)/image $(EXEC)/draw map_checks/checkers utils/tab_utils utils/map_utils	\
-			map_checks/checkers2
+			map_checks/checkers2 utils/player_utils utils/dda_cast_utils utils/tab_utils2	\
+			
 
 SRCS = $(addsuffix .c, $(SOURCE))
 OBJS = $(addsuffix .o, $(SOURCE))

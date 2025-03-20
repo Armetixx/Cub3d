@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:18:33 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/17 14:55:10 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:35:31 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,25 @@ void	cub3d_init(t_data*data)
 void	load_textures(t_data *data)
 {
 	data->north_texture.img = mlx_xpm_file_to_image(data->mlx_connection,
-			"./textures/north.xpm", &data->tex_w, &data->tex_h);
+			data->north, &data->tex_w, &data->tex_h);
 	data->north_texture.adrr = mlx_get_data_addr(data->north_texture.img,
 			&data->north_texture.bits_per_pixel,
 			&data->north_texture.line_lenght,
 			&data->north_texture.endian);
 	data->south_texture.img = mlx_xpm_file_to_image(data->mlx_connection,
-			"./textures/south.xpm", &data->tex_w, &data->tex_h);
+			data->south, &data->tex_w, &data->tex_h);
 	data->south_texture.adrr = mlx_get_data_addr(data->south_texture.img,
 			&data->south_texture.bits_per_pixel,
 			&data->south_texture.line_lenght,
 			&data->south_texture.endian);
 	data->east_texture.img = mlx_xpm_file_to_image(data->mlx_connection,
-			"./textures/east.xpm", &data->tex_w, &data->tex_h);
+			data->east, &data->tex_w, &data->tex_h);
 	data->east_texture.adrr = mlx_get_data_addr(data->east_texture.img,
 			&data->east_texture.bits_per_pixel,
 			&data->east_texture.line_lenght,
 			&data->east_texture.endian);
 	data->west_texture.img = mlx_xpm_file_to_image(data->mlx_connection,
-			"./textures/west.xpm", &data->tex_w, &data->tex_h);
+			data->west, &data->tex_w, &data->tex_h);
 	data->west_texture.adrr = mlx_get_data_addr(data->west_texture.img,
 			&data->west_texture.bits_per_pixel,
 			&data->west_texture.line_lenght,

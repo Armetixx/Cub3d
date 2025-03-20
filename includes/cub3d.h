@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/18 15:15:59 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:32:17 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "../mlx_linux/mlx.h"
 # include "errors.h"
 # include "map.h"
+# include "utils.h"
 
 //# include "libft/libft.h"
 # include <stdio.h> // A retirer
@@ -103,17 +104,41 @@ typedef struct s_data
 	t_texture	south_texture;
 	t_texture	east_texture;
 	t_texture	west_texture;
+	char		*north;
+	char		*south;
+	char		*west;
+	char		*east;
 	int			tex_w;
 	int			tex_h;
 
 	int			*pmap;
 }	t_data;
 
+typedef struct s_dda_ray
+{
+	float	ray_dir_x;
+	float	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	float	side_dist_x;
+	float	side_dist_y;
+	float	delta_dist_x;
+	float	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+	float	wall_dist;
+	float	wall_x;
+}	t_dda_ray;
+
+
 typedef struct s_ray_hit
 {
 	float	distance;
 	int		direction;
 	float	wall_x;
+	float	ray_x;
+	float	ray_y;
 }	t_ray_hit;
 
 //---------- Events ----------//
@@ -143,6 +168,11 @@ void	draw_player(t_data *data);
 void	cast_fov(t_data *data);
 void	draw_cursor(t_data *data, int size, int color);
 int		ft_get_playerpos(t_data *data);
+void	ft_wall_hit_direction(t_data *data, t_ray_hit *hit,
+			float prev_x, float prev_y);
+int		ft_dda_side(t_data *data, t_dda_ray *dda);
+void	ft_init_step_and_dist(t_data *data, t_dda_ray *dda);
+int		ft_set_wall_direction(t_dda_ray dda);
 
 //---------- DRAWING ----------//
 
@@ -156,7 +186,8 @@ void	draw_vertical_line(t_data *data, int x, int start, int end, int color);
 void	put_pixel_to_image(t_data *data, int x, int y, int color);
 void	render_frame(t_data *data);
 void	clear_image(t_data *data, int color);
-
+int		ft_textures_to_data(t_data *data, char **tab);
+char	**ft_make_map(int fd, t_data *data);
 
 void	load_textures(t_data *data);
 int		get_texture_color(t_texture *texture, int tex_x, int tex_y);

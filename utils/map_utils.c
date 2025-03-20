@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:10:26 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/18 15:24:26 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:32:43 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_get_playerpos(t_data *data)
 	return (1);
 }
 
-char	**ft_make_map(int fd)
+char	**ft_make_map(int fd, t_data *data)
 {
 	char	**misc_tab;
 	char	**tmp_tab;
@@ -79,7 +79,11 @@ char	**ft_make_map(int fd)
 		ft_free_tab(misc_tab);
 		return (NULL);
 	}
-	ft_free_tab(misc_tab);
+	if (!ft_textures_to_data(data, misc_tab))
+	{
+		ft_free_tab(misc_tab);
+		return (NULL);
+	}
 	map = ft_get_map(fd);
 	if (!ft_check_map(map))
 	{
