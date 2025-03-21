@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:49:40 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/20 19:24:23 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:57:55 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ void	draw_map(t_data *data)
 void	map_init(t_data	*data)
 {
 	data->map_bool = OFF;
-	data->player_angle = 0;
 	data->player_size = data->tile_size / 5;
 }

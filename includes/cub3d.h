@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/20 19:23:39 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:15:55 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,18 @@ typedef struct s_data
 	char		*east;
 	char		*floor;
 	char		*ceiling;
+	int			rgbfloor;
+	int			rgbceiling;
+	float		wall_height;
 	int			tex_w;
 	int			tex_h;
 
+	int			dx;
+	int			dy;
+	int			sx;
+	int			sy;
+	int			err;
+	int			e2;
 	int			*pmap;
 }	t_data;
 
@@ -154,6 +163,10 @@ int		game_loop(t_data *data);
 
 void	draw_map(t_data *data);
 int		is_wall(t_data *data, float x, float y, int is_for_ray);
+void	*ft_free_misc_tab(t_data *data, char **tab);
+int		ft_free_data(t_data *data);
+int		ft_check_misc_tab(t_data *data, char **tab);
+int		ft_check_misc_tab_2(t_data *data, char **tab, int i);
 
 //---------- PLAYER ----------//
 
@@ -171,7 +184,7 @@ int		ft_set_wall_direction(t_dda_ray dda);
 
 void	render_3d(t_data *data);
 void	draw_square(t_data *data, int x, int y, int color);
-void	draw_line(t_data *data, int x1, int y1, int x2, int y2, int color);
+void	draw_line(t_data *data, int x2, int y2);
 
 //---------- MLX-IMG ----------//
 
@@ -185,8 +198,8 @@ char	**ft_make_map(int fd, t_data *data);
 
 void	load_textures(t_data *data);
 int		get_texture_color(t_texture *texture, int tex_x, int tex_y);
-void	draw_textured_vertical(t_data *data, int x,
-			int start, int end, t_ray_hit *hit);
+void	draw_textured_vertical(t_data *data, int x, float wall_height,
+			t_ray_hit *hit);
 char	**ft_sort_misc_tab(char **tab, t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:52:12 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/20 19:21:04 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:34:16 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	ft_textures_to_data(t_data *data, char **tab)
 {
 	int	fd;
 
+	data->map = NULL;
 	data->north = ft_get_texture_path(tab[0]);
 	data->south = ft_get_texture_path(tab[1]);
 	data->west = ft_get_texture_path(tab[2]);
@@ -70,7 +71,7 @@ int	ft_textures_to_data(t_data *data, char **tab)
 	return (1);
 }
 
-void	*ft_free_misc_tab(char **tab)
+void	*ft_free_misc_tab(t_data *data, char **tab)
 {
 	if (tab)
 	{
@@ -88,21 +89,31 @@ void	*ft_free_misc_tab(char **tab)
 			free(tab[5]);
 		free(tab);
 	}
+	free(data->ceiling);
+	free(data->floor);
 	return (NULL);
 }
 
-int	ft_free_int_tab(int **tab)
+int	ft_free_data(t_data *data)
 {
 	int	i;
 
-	if (!tab)
-		return (0);
 	i = -1;
-	while (tab[++i][0] != 0)
+	if (data->map)
 	{
-		free(tab[i]);
+		while (data->map[++i][0] != 0)
+		{
+			free(data->map[i]);
+		}
+		free(data->map[i]);
+		free(data->map);
 	}
-	free(tab[i]);
-	free(tab);
+	free(data->north);
+	free(data->south);
+	free(data->east);
+	free(data->west);
+	free(data->floor);
+	free(data->ceiling);
+	free(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:53:23 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/20 15:47:35 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:18:11 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	cast_ray(t_data *data, float angle)
 		ray_y += cos(angle) * RAY_STEP;
 		ray_x += sin(angle) * RAY_STEP;
 	}
-	draw_line(data, (int)data->center_x, (int)data->center_y,
-		(int)ray_x, (int)ray_y, RED_COLOR);
+	draw_line(data, (int)ray_x, (int)ray_y);
 }
 
 t_ray_hit	cast_ray_textured(t_data *data, float angle)
@@ -109,8 +108,7 @@ void	render_3d(t_data *data)
 		wall_height = (data->tile_size * HEIGHT) / (hit.distance + 0.0001);
 		if (wall_height > HEIGHT)
 			wall_height = HEIGHT;
-		draw_textured_vertical(data, i, ((HEIGHT / 2)
-				- (wall_height / 2)), ((HEIGHT / 2) + (wall_height / 2)), &hit);
+		draw_textured_vertical(data, WIDTH - i - 1, wall_height, &hit);
 		i++;
 	}
 }

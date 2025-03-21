@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:18:04 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/20 18:32:19 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:45:02 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof(t_data));
 	data->tmp_map = ft_make_map(fd, data);
 	if (!data->tmp_map)
-		return (free(data), 1);
+		return (ft_free_data(data));
 	if (!ft_get_playerpos(data))
 	{
 		ft_free_tab(data->tmp_map);
-		free(data);
+		ft_free_data(data);
 		return (1);
 	}
 	data->map = ft_map_to_int(data->tmp_map);
 	ft_free_tab(data->tmp_map);
 	if (!ft_check_map_is_valid(data->map))
-		return (ft_free_int_tab(data->map));
+		return (ft_free_data(data));
 	start_game(data);
 	mlx_loop(data->mlx_connection);
 	return (0);

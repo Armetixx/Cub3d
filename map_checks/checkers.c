@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 13:09:27 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/20 18:36:19 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:06:03 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_check_misc_line(char *line)
 	return (1);
 }
 
-int	ft_check_misc_tab(char **tab)
+int	ft_check_misc_tab(t_data *data, char **tab)
 {
 	int	i;
 	int	j;
@@ -51,7 +51,7 @@ int	ft_check_misc_tab(char **tab)
 			return (ft_error("Wrong identifier for cardinal.", 0));
 		i++;
 	}
-	if (!ft_check_misc_tab_2(tab, i))
+	if (!ft_check_misc_tab_2(data, tab, i))
 		return (0);
 	return (1);
 }
@@ -62,6 +62,11 @@ char	**ft_get_map(int fd)
 	char	**map;
 
 	line = ft_check_empty(fd);
+	if (!line)
+	{
+		ft_error("Problem with the map", 0);
+		return (NULL);
+	}
 	map = malloc(sizeof(char *) * 1);
 	map[0] = NULL;
 	while (line)

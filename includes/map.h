@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:23:02 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/20 19:17:12 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:19:04 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 int		ft_open_file(char *filename);
 char	**ft_create_misc_tab(int fd);
 int		ft_check_misc_line(char *line);
-int		ft_check_misc_tab(char **tab);
-int		ft_check_misc_tab_2(char **tab, int i);
 char	*ft_check_empty(int fd);
 int		ft_check_map(char **map);
 char	**ft_get_map(int fd);

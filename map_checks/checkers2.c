@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:12:03 by armetix           #+#    #+#             */
-/*   Updated: 2025/03/18 15:34:49 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:18:48 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_check_map_is_valid(int **map)
 	return (1);
 }
 
-int	ft_check_misc_tab_2(char **tab, int i)
+int	ft_check_misc_tab_2(t_data *data, char **tab, int i)
 {
 	int	j;
 
@@ -58,5 +58,11 @@ int	ft_check_misc_tab_2(char **tab, int i)
 	}
 	if (i != 6)
 		return (ft_error("Wrong identifier or duplicated detected.", 0));
+	data->rgbceiling = ft_convert_rgb(data->ceiling);
+	if (data->rgbceiling == -1)
+		return (0);
+	data->rgbfloor = ft_convert_rgb(data->floor);
+	if (data->rgbfloor == -1)
+		return (0);
 	return (1);
 }

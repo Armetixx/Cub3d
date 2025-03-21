@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 14:33:27 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/20 19:13:36 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:33:38 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,35 @@ void	draw_cursor(t_data *data, int size, int color)
 	}
 }
 
+static int	ft_check_rgb(char *str)
+{
+	int	i;
+	int	check;
+	int	count;
+
+	i = 1;
+	count = 0;
+	while (str[i] && ft_isspace(str[i]))
+		i++;
+	while (str[i])
+	{
+		check = 0;
+		while (ft_isdigit(str[i]))
+		{
+			check++;
+			i++;
+		}
+		if (check > 3 || check == 0)
+			return (ft_error("Invalid rgb parameters", 0));
+		if (str[i++] != ',' && count != 2)
+			return (ft_error("Invalid rgb parameters", 0));
+		count++;
+	}
+	if (count > 3)
+		return (ft_error("Invalid rgb parameters", 0));
+	return (1);
+}
+
 int	ft_convert_rgb(char *str)
 {
 	int	r;
@@ -83,6 +112,8 @@ int	ft_convert_rgb(char *str)
 	int	b;
 	int	i;
 
+	if (!ft_check_rgb(str))
+		return (-1);
 	i = 1;
 	while (ft_isspace(str[i]) && str[i])
 		i++;
@@ -94,6 +125,6 @@ int	ft_convert_rgb(char *str)
 		i++;
 	b = ft_atoi(str + ++i);
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
-		return (ft_error("rgb outside range", 0));
+		return (ft_error("rgb outside range", -1));
 	return (r << 16 | g << 8 | b);
 }

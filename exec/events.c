@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:31:20 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/20 19:08:25 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:16:13 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,8 @@ int	close_handler(t_data *data)
 	mlx_destroy_image(data->mlx_connection, data->img);
 	mlx_destroy_window(data->mlx_connection, data->mlx_window);
 	mlx_destroy_display(data->mlx_connection);
-	ft_free_int_tab(data->map);
 	free(data->mlx_connection);
-	free(data->north);
-	free(data->south);
-	free(data->east);
-	free(data->west);
-	free(data->floor);
-	free(data->ceiling);
-	free(data);
+	ft_free_data(data);
 	exit(EXIT_SUCCESS);
 }
 
@@ -57,13 +50,13 @@ void	mouvement_gestion(t_data *data, int keysym)
 	}
 	if (keysym == 100)
 	{
-		data->next_y -= sin(data->player_angle) * PLAYER_SPEED;
-		data->next_x += cos(data->player_angle) * PLAYER_SPEED;
+		data->next_y += sin(data->player_angle) * PLAYER_SPEED;
+		data->next_x -= cos(data->player_angle) * PLAYER_SPEED;
 	}
 	if (keysym == 97)
 	{
-		data->next_y += sin(data->player_angle) * PLAYER_SPEED;
-		data->next_x -= cos(data->player_angle) * PLAYER_SPEED;
+		data->next_y -= sin(data->player_angle) * PLAYER_SPEED;
+		data->next_x += cos(data->player_angle) * PLAYER_SPEED;
 	}
 }
 
@@ -74,9 +67,9 @@ int	key_handler(int keysym, t_data *data)
 	if (keysym == 109)
 		map_2d_or_3d(data);
 	if (keysym == 65361)
-		data->player_angle -= TURN_SPEED;
-	if (keysym == 65363)
 		data->player_angle += TURN_SPEED;
+	if (keysym == 65363)
+		data->player_angle -= TURN_SPEED;
 	mouvement_gestion(data, keysym);
 	if (!is_wall(data, data->next_x, data->player_y, 0))
 		data->player_x = data->next_x;

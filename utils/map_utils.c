@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:10:26 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/20 19:16:50 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:04:37 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,20 @@ char	**ft_make_map(int fd, t_data *data)
 	tmp_tab = ft_create_misc_tab(fd);
 	misc_tab = ft_sort_misc_tab(tmp_tab, data);
 	ft_free_tab(tmp_tab);
-	if (!ft_check_misc_tab(misc_tab))
-		return (ft_free_misc_tab(misc_tab));
+	if (!ft_check_misc_tab(data, misc_tab))
+		return (ft_free_misc_tab(data, misc_tab));
 	if (!ft_textures_to_data(data, misc_tab))
 	{
-		ft_free_tab(misc_tab);
+		ft_free_misc_tab(data, misc_tab);
 		ft_error("texture path inaccesible", 0);
 		return (NULL);
 	}
 	ft_free_tab(misc_tab);
 	map = ft_get_map(fd);
-	if (!ft_check_map(map))
+	if (!map || !ft_check_map(map))
 	{
-		ft_free_tab(map);
+		if (map)
+			ft_free_tab(map);
 		return (NULL);
 	}
 	map = ft_space_in_map(map);
