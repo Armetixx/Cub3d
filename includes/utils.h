@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:43:05 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/21 16:31:09 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/25 12:47:29 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int		ft_longest_str_in_tab(char **tab);
 int		**ft_map_to_int(char **map);
 char	*ft_get_texture_path(char *str);
 int		ft_convert_rgb(char *str);
+void	ft_free_tab_int(int	**tab);
 
 #endif

@@ -6,38 +6,43 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:12:03 by armetix           #+#    #+#             */
-/*   Updated: 2025/03/21 16:18:48 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:14:26 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/map.h"
 
-int	ft_check_map_is_valid(int **map)
+int	tab_print(char **tab) // temporaire
 {
-	int	x;
-	int	y;
+	int	i;
 
-	x = -1;
-	while (map[++x][0] != 0)
+	if (!tab)
+		return (0);
+	i = -1;
+	while (tab[++i])
+		printf("tab[%d] : %s", i, tab[i]);
+	return (i);
+}
+
+int	ft_check_map_is_valid(int x, int y, char **map, t_data *data)
+{
+	if (x >= data->map_y || y >= data->map_x || x < 0 || y < 0)
 	{
-		y = -1;
-		while (map[x][++y] != -1)
-		{
-			if (map[x][y] == 0)
-			{
-				if (y == 0 || x == 0)
-					return (ft_error("map is unplayable", 0));
-				if (map[x - 1][y] != 1 && map[x - 1][y] != 0)
-					return (ft_error("map is unplayable", 0));
-				if (map[x + 1][y] != 1 && map[x + 1][y] != 0)
-					return (ft_error("map is unplayable", 0));
-				if (map[x][y - 1] != 1 && map[x][y - 1] != 0)
-					return (ft_error("map is unplayable", 0));
-				if (map[x][y + 1] != 1 && map[x][y + 1] != 0)
-					return (ft_error("map is unplayable", 0));
-			}
-		}
+		return (0);
 	}
+	if (map[x][y] == '1' || map[x][y] == '2')
+		return (1);
+	if (map[x][y] == '5')
+		return (0);
+	map[x][y] = '2';
+	if (!ft_check_map_is_valid(x - 1, y, map, data))
+		return (0);
+	if (!ft_check_map_is_valid(x + 1, y, map, data))
+		return (0);
+	if (!ft_check_map_is_valid(x, y - 1, map, data))
+		return (0);
+	if (!ft_check_map_is_valid(x, y + 1, map, data))
+		return (0);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:14:17 by guillaumeco       #+#    #+#             */
-/*   Updated: 2025/03/21 18:15:55 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/25 13:12:15 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int		key_handler(int keysym, t_data *data);
 
 //---------- INITS ----------//
 
-void	cub3d_init(t_data*data);
+int		cub3d_init(t_data*data);
 void	map_init(t_data	*data);
 
 //---------- UPDATE ----------//
@@ -163,10 +163,11 @@ int		game_loop(t_data *data);
 
 void	draw_map(t_data *data);
 int		is_wall(t_data *data, float x, float y, int is_for_ray);
-void	*ft_free_misc_tab(t_data *data, char **tab);
+void	*ft_free_misc_tab(char **tab);
 int		ft_free_data(t_data *data);
 int		ft_check_misc_tab(t_data *data, char **tab);
 int		ft_check_misc_tab_2(t_data *data, char **tab, int i);
+int		ft_check_map_is_valid(int x, int y, char **map, t_data *data);
 
 //---------- PLAYER ----------//
 
@@ -196,7 +197,7 @@ char	**ft_make_map(int fd, t_data *data);
 
 //---------- TEXTURES ----------//
 
-void	load_textures(t_data *data);
+int		load_textures(t_data *data);
 int		get_texture_color(t_texture *texture, int tex_x, int tex_y);
 void	draw_textured_vertical(t_data *data, int x, float wall_height,
 			t_ray_hit *hit);

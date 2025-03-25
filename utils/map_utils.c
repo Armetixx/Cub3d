@@ -6,7 +6,7 @@
 /*   By: kederhet <kederhet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:10:26 by kederhet          #+#    #+#             */
-/*   Updated: 2025/03/21 18:04:37 by kederhet         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:23:58 by kederhet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	ft_get_playerpos(t_data *data)
 			if (data->tmp_map[j][i] == 'N' || data->tmp_map[j][i] == 'S'
 					|| data->tmp_map[j][i] == 'E' || data->tmp_map[j][i] == 'O')
 			{
-				data->player_x = i * data->tile_size;
-				data->player_y = j * data->tile_size;
+				data->player_x = i * data->tile_size + (data->tile_size / 2);
+				data->player_y = j * data->tile_size + (data->tile_size / 2);
 				ft_set_player_angle(data, i, j);
 				count++;
 			}
@@ -75,10 +75,10 @@ char	**ft_make_map(int fd, t_data *data)
 	misc_tab = ft_sort_misc_tab(tmp_tab, data);
 	ft_free_tab(tmp_tab);
 	if (!ft_check_misc_tab(data, misc_tab))
-		return (ft_free_misc_tab(data, misc_tab));
+		return (ft_free_misc_tab(misc_tab));
 	if (!ft_textures_to_data(data, misc_tab))
 	{
-		ft_free_misc_tab(data, misc_tab);
+		ft_free_misc_tab(misc_tab);
 		ft_error("texture path inaccesible", 0);
 		return (NULL);
 	}
